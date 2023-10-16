@@ -102,7 +102,7 @@ class Repository{
         }
     }
 
-    fun creatureProfile(creatureName:String): Any? {
+    fun creatureProfile(creatureName:String): model.Creatures? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/${creatureName}"
             val scrapper = Scrapper().Soup(url)

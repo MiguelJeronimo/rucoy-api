@@ -18,6 +18,5 @@ class NewsController {
         } catch (error: Exception){
             return responses.Errors(500, error.stackTraceToString())
         }
-
     }
 }

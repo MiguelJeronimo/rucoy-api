@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk-alpine
+FROM amazoncorretto:11
 
 RUN adduser -D -g "app" app
 

@@ -119,7 +119,7 @@ class Repository{
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Sword_List"
             val scrapper = Scrapper().Soup(url)
-            val swordList = SwordListRucoy().getSwordList(scrapper)
+            val swordList = SwordListRucoy().swordList(scrapper)
             return swordList
         } catch (e:Exception){
             println("Error: ${e.stackTraceToString()}")

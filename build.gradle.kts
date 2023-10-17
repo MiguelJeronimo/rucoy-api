@@ -33,6 +33,7 @@ tasks.withType<KotlinCompile> {
 		freeCompilerArgs += "-Xjsr305=strict"
 		jvmTarget = "11"
 	}
+
 }
 
 tasks.withType<Test> {

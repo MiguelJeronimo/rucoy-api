@@ -2,12 +2,12 @@ FROM amazoncorretto:11
 
 RUN adduser -D -g "app" app
 
-COPY target/rucoy-api.jar app.jar
+COPY out/artifacts/rucoy_api_main_jar/rucoy-api.main.jar app.jar
 
 RUN chown app:app app.jar
 
 USER app
 
-EXPOSE 8081
+EXPOSE 8080
 
 CMD ["corretto-11", "-jar", "app.jar"]

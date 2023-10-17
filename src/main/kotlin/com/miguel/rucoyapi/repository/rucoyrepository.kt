@@ -9,7 +9,7 @@ import Jsoup.Scrapper
 import model.*
 
 class Repository{
-    fun SearchGuilds(guildName:String): Any? {
+    fun SearchGuilds(guildName:String): Guild? {
         try {
             val url = "https://www.rucoyonline.com/guild/${guildName}"
             val scrapper = Scrapper().Soup(url)
@@ -21,7 +21,7 @@ class Repository{
         }
     }
 
-    fun NewsRucoy(): Any? {
+    fun NewsRucoy(): newsRucoy? {
         try {
             val url = "https://www.rucoyonline.com/news"
             val scrapper = Scrapper().Soup(url)
@@ -102,7 +102,7 @@ class Repository{
         }
     }
 
-    fun creatureProfile(creatureName:String): Any? {
+    fun creatureProfile(creatureName:String): model.Creatures? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/${creatureName}"
             val scrapper = Scrapper().Soup(url)

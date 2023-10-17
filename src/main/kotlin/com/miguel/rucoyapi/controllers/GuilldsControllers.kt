@@ -1,39 +1,35 @@
 package com.miguel.rucoyapi.controllers
 
+import API.guildss.GuildsData
 import com.miguel.rucoyapi.model.responses
 import com.miguel.rucoyapi.repository.Repository
-import org.jetbrains.annotations.NotNull
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class CharactersController {
-    @GetMapping("api/v1/characters/{name}")
-    @NotNull
-    fun getCharacters(@PathVariable name: String): Any {
+class GuilldsControllers {
+    @GetMapping("api/v1/guild/{name}")
+    fun getGuild(@PathVariable name: String): Any?{
         return try {
             if (name != null){
-                val searchCharacters = Repository().SearchCharacter(name)
-                if (searchCharacters?.name != null){
-                    return responses.response(200, searchCharacters)
-                } else{
-                    return responses.Errors(400, "Character is not exist")
+                val guild = Repository().SearchGuilds(name)
+                return when(guild?.name){
+                    ""->{responses.Errors(400, "Guild is not exist")}
+                    else -> {responses.response(200, guild)}
                 }
             } else{
-                return responses.Errors(400, "Insert Name Character")
+                return responses.Errors(400, "Insert Guild Name")
             }
-
         } catch (e: Exception){
             println("ERROR: ${e.stackTraceToString()}")
             return responses.Errors(500, e.stackTraceToString())
         }
     }
-    @GetMapping("api/v1/characters")
-    @NotNull
-    fun getCharacter(): Any {
+    @GetMapping("api/v1/guild")
+    fun getGuilds(): Any?{
         return try {
-            return responses.Errors(400, "Not character name valid")
+            return responses.Errors(400, "Not guild name valid")
         } catch (e: Exception){
             println("ERROR: ${e.stackTraceToString()}")
             return responses.Errors(500, e.stackTraceToString())

@@ -7,7 +7,7 @@ data class Mele(val rank:String,val name:String,val status:String, val mele:Stri
 data class Distance(val rank:String,val name:String,val status:String, val distance:String)
 data class Magic(val rank:String,val name:String,val status:String, val magic:String)
 data class Defense(val rank:String,val name:String,val status:String, val defense:String)
-data class Guild(val name: String, val description:String, val founded_on:String, val member: ArrayList<Members>)
+data class Guild(val name: String, val description:String, val founded_on:String, val members: ArrayList<Members>)
 data class Members(val name:String,val supporter:String, val level: String,val join_date:String)
 //data class Characters(val Character: CharactersDataGeneral)
 data class CharactersDataGeneral(

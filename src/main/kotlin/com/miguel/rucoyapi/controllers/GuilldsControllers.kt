@@ -26,4 +26,13 @@ class GuilldsControllers {
             return responses.Errors(500, e.stackTraceToString())
         }
     }
+    @GetMapping("api/v1/guild")
+    fun getGuilds(): Any?{
+        return try {
+            return responses.Errors(400, "Not guild name valid")
+        } catch (e: Exception){
+            println("ERROR: ${e.stackTraceToString()}")
+            return responses.Errors(500, e.stackTraceToString())
+        }
+    }
 }

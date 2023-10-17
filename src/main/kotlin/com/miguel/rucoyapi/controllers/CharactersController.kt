@@ -1,7 +1,5 @@
 package com.miguel.rucoyapi.controllers
 
-import API.characters.CharactersRucoy
-import Jsoup.Scrapper
 import com.miguel.rucoyapi.model.responses
 import com.miguel.rucoyapi.repository.Repository
 import org.jetbrains.annotations.NotNull
@@ -26,6 +24,16 @@ class CharactersController {
                 return responses.Errors(400, "Insert Name Character")
             }
 
+        } catch (e: Exception){
+            println("ERROR: ${e.stackTraceToString()}")
+            return responses.Errors(500, e.stackTraceToString())
+        }
+    }
+    @GetMapping("api/v1/characters")
+    @NotNull
+    fun getCharacter(): Any {
+        return try {
+            return responses.Errors(400, "Not character name valid")
         } catch (e: Exception){
             println("ERROR: ${e.stackTraceToString()}")
             return responses.Errors(500, e.stackTraceToString())

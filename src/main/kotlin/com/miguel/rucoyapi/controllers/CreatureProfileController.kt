@@ -27,4 +27,13 @@ class CreatureProfileController {
             return responses.Errors(500, e.stackTraceToString())
         }
     }
+    @GetMapping("api/v1/creature")
+    fun getCreature(): Any {
+        return try {
+            return responses.Errors(400, "Not creature name valid")
+        } catch (e: Exception){
+            println("ERROR: ${e.stackTraceToString()}")
+            return responses.Errors(500, e.stackTraceToString())
+        }
+    }
 }

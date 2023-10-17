@@ -10,4 +10,4 @@ USER app
 
 EXPOSE 8081
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["corretto-11", "-jar", "app.jar"]

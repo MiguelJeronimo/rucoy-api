@@ -44,6 +44,13 @@ data class ItemRucoyData(
     val drop_by: MutableList<String>,
     val sell_npc: MutableList<String>
 )
+data class ItemRucoyPotions(
+    val potion_name:String,
+    val img: String,
+    val efect: String,
+    val buy_npc: String,
+    val sell_npc: String
+)
 data class ItemProfile(
     val description_general: String,
     val image: String,

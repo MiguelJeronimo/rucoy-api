@@ -1,47 +1,44 @@
 package API.Items.Potions
 
+import model.ItemRucoyPotions
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 
 class PotionsRucoy {
-
-
-    fun getItemPotionsRucoy(scrapper: Document) {
+    fun potionsList(scrapper: Document): ArrayList<ItemRucoyPotions> {
         val items = scrapper.getElementsByClass("article-table")
-        for (item in items){
-            searchDataPotionsRucoy(item)
+        val trs = items.select("tbody").select("tr")
+        var imgItem: String?
+        var nameItem: String?
+        var effect: String?
+        var BuyNPC: String?
+        var SellNPC: String?
+        val itemRucoyData = ArrayList<ItemRucoyPotions>()
+        trs.forEach { tr->
+            //Validate sword name
+            val td = tr.select("[style=text-align:center;]")
+            if (td[0].children().text() == ""){
+                nameItem = td[1].children().text()
+            } else{
+                nameItem = td[0].children().text()
+            }
+            if (tr.select("img").attr("data-src") == ""){
+                imgItem = tr.select("img").attr("src")
+            } else{
+                imgItem = tr.select("img").attr("data-src")
+            }
+            effect = td[1].text()
+            BuyNPC = td[2].text()
+            SellNPC = td[3].text()
+            itemRucoyData.add(ItemRucoyPotions(
+                nameItem.toString(),
+                imgItem.toString(),
+                effect.toString(),
+                BuyNPC.toString(),
+                SellNPC.toString()
+            ))
         }
-    }
-    fun searchDataPotionsRucoy(element: Element){
-        val elements = element.children()
-        for (element in elements){
-            if (element.tagName() == "td"){
-                if (element.tagName() == "a"){
-                    println("Name ITem: "+element.text())
-                } else if (element.hasText()){
-                    println("Buy NPC: "+ element.text())
-                }
-                else{
-                    searchDataPotionsRucoy(element)
-                }
-            }
-            else if (element.tagName() == "th"){
-                if (element.hasText()){println("Sell NPC: "+element.text())}
-            }
-            if (element.tagName() == "figure"){
-                //println(element.children().get(0).select("img"))
-                var imgItem: String?
-                if (element.children().get(0).select("img").attr("data-src") == ""){
-                    imgItem = element.select("img").attr("src")
-                    println(imgItem)
-                } else{
-                    imgItem = element.select("img").attr("data-src")
-                    println(imgItem)
-                }
-            }
-            else{
-                searchDataPotionsRucoy(element)
-            }
-        }
+        itemRucoyData.removeFirst()
+        return itemRucoyData
     }
 }

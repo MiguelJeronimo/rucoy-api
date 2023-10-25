@@ -6,7 +6,7 @@ import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 
 class SwordListRucoy {
-    fun getSwordList(scrapper: Document): ItemsRucoyData {
+    fun swordList(scrapper: Document): ItemsRucoyData {
         val items = scrapper.getElementsByClass("article-table")[1]
         val tr = items.select("tbody").select("tr")
         val itemRucoyData = ArrayList<ItemRucoyData>()
@@ -27,8 +27,8 @@ class SwordListRucoy {
             }
             val arrayDamage = td[1].children().eachText()
             val arrayBuyNPC = td[2].children().eachText()
-            val arrayDropBy = td[3].children().eachText()
-            val arraySellNPC = td[4].children().eachText()
+            val arraySellNPC = td[3].children().eachText()
+            val arrayDropBy = td[4].children().eachText()
             itemRucoyData.add( ItemRucoyData(
                 nameItem,
                 imgItem,
@@ -39,6 +39,8 @@ class SwordListRucoy {
             )
             )
         }
+        //delete first element to arraylist
+        itemRucoyData.removeFirst()
         return ItemsRucoyData(itemRucoyData)
     }
 }

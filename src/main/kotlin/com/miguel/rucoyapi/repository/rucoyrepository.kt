@@ -1,5 +1,6 @@
 package com.miguel.rucoyapi.repository
 
+import API.Items.Bows.BowsListRucoy
 import API.Items.Swords.SwordListRucoy
 import API.characters.CharactersRucoy
 import API.creatures.Creatures
@@ -121,6 +122,18 @@ class Repository{
             val scrapper = Scrapper().Soup(url)
             val swordList = SwordListRucoy().swordList(scrapper)
             return swordList
+        } catch (e:Exception){
+            println("Error: ${e.stackTraceToString()}")
+            return null
+        }
+    }
+
+    fun bowsList(): ArrayList<ItemRucoyData>? {
+        try {
+            val url = "https://rucoy-online.fandom.com/wiki/Bow_List"
+            val scrapper = Scrapper().Soup(url)
+            val bows_list = BowsListRucoy().getBowList(scrapper)
+            return bows_list
         } catch (e:Exception){
             println("Error: ${e.stackTraceToString()}")
             return null

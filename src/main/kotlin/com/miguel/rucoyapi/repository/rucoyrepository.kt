@@ -1,7 +1,9 @@
 package com.miguel.rucoyapi.repository
 
 import API.Items.Bows.BowsListRucoy
+import API.Items.ItemsProfile.ItemsProfile
 import API.Items.Swords.SwordListRucoy
+import API.Items.Wands.WandsListRucoy
 import API.characters.CharactersRucoy
 import API.creatures.Creatures
 import API.guildss.GuildsData
@@ -120,7 +122,7 @@ class Repository{
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Sword_List"
             val scrapper = Scrapper().Soup(url)
-            val swordList = SwordListRucoy().swordList(scrapper)
+            val swordList = SwordListRucoy().getSwordList(scrapper)
             return swordList
         } catch (e:Exception){
             println("Error: ${e.stackTraceToString()}")
@@ -134,6 +136,28 @@ class Repository{
             val scrapper = Scrapper().Soup(url)
             val bows_list = BowsListRucoy().getBowList(scrapper)
             return bows_list
+        } catch (e:Exception){
+            println("Error: ${e.stackTraceToString()}")
+            return null
+        }
+    }
+    fun wandsList(): ArrayList<ItemRucoyData>? {
+        try {
+            val url = "https://rucoy-online.fandom.com/wiki/Wand_List"
+            val scrapper = Scrapper().Soup(url)
+            val wands_list = WandsListRucoy().getWandsList(scrapper)
+            return wands_list
+        } catch (e:Exception){
+            println("Error: ${e.stackTraceToString()}")
+            return null
+        }
+    }
+    fun itemProfile(name:String): ItemProfile? {
+        try {
+            val url = "https://rucoy-online.fandom.com/wiki/${name}"
+            val scrapper = Scrapper().Soup(url)
+            val wands_list = ItemsProfile().itemsProfile(scrapper)
+            return wands_list
         } catch (e:Exception){
             println("Error: ${e.stackTraceToString()}")
             return null

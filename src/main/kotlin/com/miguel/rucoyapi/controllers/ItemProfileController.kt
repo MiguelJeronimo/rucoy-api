@@ -20,7 +20,7 @@ class ItemProfileController {
                 val validFile = File("src/main/kotlin/com/miguel/rucoyapi/Files/datacorrecta.txt")
                 val document = FileInputStream(file)
                 val document2 = FileInputStream(validFile)
-                //println(System.getProperty("user.dir"))
+                println("Ruta del archivo: "+System.getProperty("user.dir"))
                 val bloquedData = utils().readDocumenttxt(document)
                 val validData = utils().readDocumenttxt(document2)
                 val data = utils().searchdataArray(bloquedData, validData, name)

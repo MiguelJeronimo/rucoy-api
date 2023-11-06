@@ -52,6 +52,7 @@ data class ItemRucoyPotions(
     val sell_npc: String
 )
 data class ItemProfile(
+    val name: String,
     val description_general: String,
     val image: String,
     val type: String,
@@ -60,4 +61,8 @@ data class ItemProfile(
     val source: String,
     val cost_to_buy: String,
     val gold_for_sell: String
+)
+data class Category(
+    val url: String,
+    val category: String
 )

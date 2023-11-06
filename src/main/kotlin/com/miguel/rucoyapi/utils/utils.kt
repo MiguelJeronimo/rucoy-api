@@ -34,7 +34,6 @@ class utils {
         }else{
             val dataSeparate = searchdata.split(" ")
             val sepate = dataSeparate.last()
-            println(dataSeparate.last())
             arrayData = data.filter { it == sepate }
             dataSplit =  when (arrayData.isEmpty()){
                  true ->{

@@ -24,7 +24,9 @@ class ItemsProfile {
                 }
             }
         }
+       val name = scrapper.getElementsByClass("pi-item pi-item-spacing pi-title pi-secondary-background").text()
        val item_profile = ItemProfile(
+            name,
             description_general,
             imgItem,
             itemType,
@@ -35,14 +37,5 @@ class ItemsProfile {
             data[5].text()
         )
         return item_profile
-
-        /*println(description_general)
-        println("IMG: ${imgItem}")
-        println("Type: ${itemType}")
-        println(data[1].text())
-        println("Effect: ${data[2].text()}")
-        println("Source: ${data[3].text()}")
-        println("Cost to buy: ${data[4].text()}")
-        println("Gold for sell: ${data[5].text()}")*/
     }
 }

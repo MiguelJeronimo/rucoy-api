@@ -5,6 +5,7 @@ import API.Items.ItemsProfile.ItemsProfile
 import API.Items.Potions.PotionsRucoy
 import API.Items.Swords.SwordListRucoy
 import API.Items.Wands.WandsListRucoy
+import API.Items.items.Items
 import API.characters.CharactersRucoy
 import API.creatures.Creatures
 import API.guildss.GuildsData
@@ -21,7 +22,7 @@ class Repository{
             val guilds = GuildsData().dataGuild(scrapper)
             return guilds
         } catch (e:Exception){
-            println("ERROR: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
             return null
         }
     }
@@ -33,7 +34,7 @@ class Repository{
             val news = New().NewsRucoy(scrapper)
             return news
         } catch (e: Exception){
-            println("Error: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
             return null
         }
 
@@ -45,7 +46,7 @@ class Repository{
             val character = CharactersRucoy().searchCharacter(scrapper)
             return character
         } catch (e:Exception){
-            println("Error: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
             return null
         }
     }
@@ -57,7 +58,7 @@ class Repository{
             val highScore = HighScoreExperiencia(scrapper)
             return highScore
         } catch (e:Exception){
-            println("Error: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
             return null
         }
     }
@@ -68,7 +69,7 @@ class Repository{
             val highScore = hightScoreMele(scrapper)
             return highScore
         }catch (e:Exception){
-            println("Error: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
             return null
         }
     }
@@ -79,7 +80,7 @@ class Repository{
             val highScore = hightScoreDistance(scrapper)
             return highScore
         } catch (e:Exception){
-            println("Error: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
             return null
         }
     }
@@ -90,7 +91,7 @@ class Repository{
             val highScore = hightScoreMagic(scrapper)
             return highScore
         } catch (e:Exception){
-            println("Error: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
             return null
         }
     }
@@ -102,7 +103,7 @@ class Repository{
             val highScore = hightScoreDefense(scrapper)
             return highScore
         } catch (e:Exception){
-            println("Error: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
             return null
         }
     }
@@ -114,7 +115,7 @@ class Repository{
             val creatureData = Creatures().getGeneralDataCreature(scrapper)
             return creatureData
         } catch (e:Exception){
-            println("Error: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
             return null
         }
     }
@@ -126,7 +127,7 @@ class Repository{
             val swordList = SwordListRucoy().getSwordList(scrapper)
             return swordList
         } catch (e:Exception){
-            println("Error: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
             return null
         }
     }
@@ -138,7 +139,7 @@ class Repository{
             val bows_list = BowsListRucoy().getBowList(scrapper)
             return bows_list
         } catch (e:Exception){
-            println("Error: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
             return null
         }
     }
@@ -149,7 +150,7 @@ class Repository{
             val wands_list = WandsListRucoy().getWandsList(scrapper)
             return wands_list
         } catch (e:Exception){
-            println("Error: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
             return null
         }
     }
@@ -160,7 +161,7 @@ class Repository{
             val wands_list = ItemsProfile().itemsProfile(scrapper)
             return wands_list
         } catch (e:Exception){
-            println("Error: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
             return null
         }
     }
@@ -172,7 +173,18 @@ class Repository{
             val potions_list = PotionsRucoy().potionsList(scrapper)
             return potions_list
         } catch (e:Exception){
-            println("Error: ${e.stackTraceToString()}")
+            println("Error: ${e.message}")
+            return null
+        }
+    }
+    fun getEquipment(): ArrayList<Category>? {
+        try {
+            val url = "https://rucoy-online.fandom.com/wiki/Equipment"
+            val scrapper = Scrapper().Soup(url)
+            val equipment = Items().getItemsList(scrapper)
+            return equipment
+        } catch (e:Exception){
+            println("Error: ${e.message}")
             return null
         }
     }

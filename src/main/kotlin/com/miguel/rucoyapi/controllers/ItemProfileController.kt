@@ -16,15 +16,17 @@ class ItemProfileController {
     fun getItemProfile(@PathVariable name: String): Any {
         return try {
             if (name != null){
-                val file = File("src/main/kotlin/com/miguel/rucoyapi/Files/databloqueada.txt")
-                val validFile = File("src/main/kotlin/com/miguel/rucoyapi/Files/datacorrecta.txt")
-                val document = FileInputStream(file)
-                val document2 = FileInputStream(validFile)
+                //val file = File("src/main/kotlin/com/miguel/rucoyapi/Files/databloqueada.txt")
+                //val validFile = File("src/main/kotlin/com/miguel/rucoyapi/Files/datacorrecta.txt")
+                //val file3 = javaClass.getResourceAsStream("/src/main/kotlin/com/miguel/rucoyapi/Files/databloqueada.txt")
+                //println("ruta: "+file3)
+                //val document = FileInputStream(validFile)
+                //val document2 = FileInputStream(validFile)
                 println("Ruta del archivo: "+System.getProperty("user.dir"))
-                val bloquedData = utils().readDocumenttxt(document)
-                val validData = utils().readDocumenttxt(document2)
-                val data = utils().searchdataArray(bloquedData, validData, name)
-                val item = Repository().itemProfile(data)
+                //val bloquedData = utils().readDocumenttxt(document)
+                //val validData = utils().readDocumenttxt(document2)
+                //val data = utils().searchdataArray(bloquedData, validData, name)
+                val item = Repository().itemProfile(name)
                 if (item != null){
                     return responses.response(200, item)
                 } else{

@@ -1,12 +1,8 @@
 package com.miguel.rucoyapi.controllers
 
-import API.Items.Bows.BowsListRucoy
-import Jsoup.Scrapper
 import com.miguel.rucoyapi.model.responses
 import com.miguel.rucoyapi.repository.Repository
-import model.ItemRucoyData
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 @RestController

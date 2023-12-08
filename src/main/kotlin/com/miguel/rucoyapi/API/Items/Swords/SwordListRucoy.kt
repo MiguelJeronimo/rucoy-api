@@ -22,6 +22,8 @@ class SwordListRucoy {
             } else {
                 nameItem = td[0].children().text()
             }
+            nameItem.also { nameItem = it.split("Lv ")[0] }
+            nameItem.also { nameItem = it!!.split("Lvl ")[0] }
             if (data.select("img").attr("data-src") == "") {
                 imgItem = data.select("img").attr("src")
             } else {
@@ -53,7 +55,7 @@ class SwordListRucoy {
             }.filter { it.isNotEmpty() }
             DropBy.add(data.children()[5].text())
             itemRucoyData.add( ItemRucoyData(
-                nameItem,
+                nameItem.toString(),
                 imgItem,
                 Damage as MutableList<String>,
                 BuyNPC as MutableList<String>,

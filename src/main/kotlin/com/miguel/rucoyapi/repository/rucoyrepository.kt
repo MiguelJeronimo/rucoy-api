@@ -2,6 +2,8 @@ package com.miguel.rucoyapi.repository
 
 import API.Items.Armor.ArmorRucoyList
 import API.Items.BackPack.BackPackList
+import API.Items.Belts.BeltsRucoyList
+import API.Items.Boots.BootsRucoyList
 import API.Items.Bows.BowsListRucoy
 import API.Items.ItemsProfile.ItemsProfile
 import API.Items.Potions.PotionsRucoy
@@ -226,6 +228,30 @@ class Repository{
             val scrapper = Scrapper().Soup(url)
             val backpacks = BackPackList().getBackPackList(scrapper)
             return backpacks
+        } catch (e:Exception){
+            println("Error: ${e.message}")
+            return null
+        }
+    }
+
+    fun getBelts(): ArrayList<Belt>? {
+        try {
+            val url = "https://rucoy-online.fandom.com/wiki/Belts_List"
+            val scrapper = Scrapper().Soup(url)
+            val belts = BeltsRucoyList().getBeltsRucoyList(scrapper)
+            return belts
+        } catch (e:Exception){
+            println("Error: ${e.message}")
+            return null
+        }
+    }
+
+    fun getBoots(): ArrayList<Boots>? {
+        try {
+            val url = "https://rucoy-online.fandom.com/wiki/Boots_List"
+            val scrapper = Scrapper().Soup(url)
+            val boots = BootsRucoyList().getBootsRucoyList(scrapper)
+            return boots
         } catch (e:Exception){
             println("Error: ${e.message}")
             return null

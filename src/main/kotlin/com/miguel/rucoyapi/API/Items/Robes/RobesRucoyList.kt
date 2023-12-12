@@ -5,7 +5,7 @@ import org.jsoup.nodes.Document
 import java.util.ArrayList
 
 class RobesRucoyList {
-    fun getShieldRucoyList(scrapper: Document): ArrayList<Robe> {
+    fun getRobesRucoyList(scrapper: Document): ArrayList<Robe> {
         val robe_list = ArrayList<Robe>()
         val items = scrapper.getElementsByClass("article-table")
         val tr = items.select("tbody").select("tr")

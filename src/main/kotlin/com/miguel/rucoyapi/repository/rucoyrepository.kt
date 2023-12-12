@@ -13,6 +13,8 @@ import API.Items.Legs.LegsRucoyList
 import API.Items.LightArmor.LightArmorList
 import API.Items.Pendants.PendantsRucoyList
 import API.Items.Potions.PotionsRucoy
+import API.Items.Rings.RingsList
+import API.Items.Robes.RobesRucoyList
 import API.Items.Swords.SwordListRucoy
 import API.Items.Wands.WandsListRucoy
 import API.Items.items.Items
@@ -325,6 +327,29 @@ class Repository{
             val scrapper = Scrapper().Soup(url)
             val pendants = PendantsRucoyList().getPendantsList(scrapper)
             return pendants
+        } catch (e:Exception){
+            println("Error: ${e.message}")
+            return null
+        }
+    }
+
+    fun getRings(): ArrayList<Ring>? {
+        try {
+            val url = "https://rucoy-online.fandom.com/wiki/Rings_List"
+            val scrapper = Scrapper().Soup(url)
+            val rings = RingsList().getRingsList(scrapper)
+            return rings
+        } catch (e:Exception){
+            println("Error: ${e.message}")
+            return null
+        }
+    }
+    fun getRobes(): ArrayList<Robe>? {
+        try {
+            val url = "https://rucoy-online.fandom.com/wiki/Robes_List"
+            val scrapper = Scrapper().Soup(url)
+            val robes = RobesRucoyList().getRobesRucoyList(scrapper)
+            return robes
         } catch (e:Exception){
             println("Error: ${e.message}")
             return null

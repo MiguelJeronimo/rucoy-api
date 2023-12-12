@@ -5,6 +5,8 @@ import API.Items.BackPack.BackPackList
 import API.Items.Belts.BeltsRucoyList
 import API.Items.Boots.BootsRucoyList
 import API.Items.Bows.BowsListRucoy
+import API.Items.Hats.HatsRucoyList
+import API.Items.Helmets.HelmetsRucoyList
 import API.Items.ItemsProfile.ItemsProfile
 import API.Items.Potions.PotionsRucoy
 import API.Items.Swords.SwordListRucoy
@@ -257,5 +259,26 @@ class Repository{
             return null
         }
     }
-
+    fun getHats(): ArrayList<Hat>? {
+        try {
+            val url = "https://rucoy-online.fandom.com/wiki/Hats_List"
+            val scrapper = Scrapper().Soup(url)
+            val hats = HatsRucoyList().getHatsRucoyList(scrapper)
+            return hats
+        } catch (e:Exception){
+            println("Error: ${e.message}")
+            return null
+        }
+    }
+    fun getHelmets(): ArrayList<Helmet>? {
+        try {
+            val url = "https://rucoy-online.fandom.com/wiki/Helmet_List"
+            val scrapper = Scrapper().Soup(url)
+            val helmets = HelmetsRucoyList().getRucoyRucoyList(scrapper)
+            return helmets
+        } catch (e:Exception){
+            println("Error: ${e.message}")
+            return null
+        }
+    }
 }

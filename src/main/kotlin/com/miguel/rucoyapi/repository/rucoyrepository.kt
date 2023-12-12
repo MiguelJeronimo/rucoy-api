@@ -15,6 +15,7 @@ import API.Items.Pendants.PendantsRucoyList
 import API.Items.Potions.PotionsRucoy
 import API.Items.Rings.RingsList
 import API.Items.Robes.RobesRucoyList
+import API.Items.Shield.ShieldRucoyList
 import API.Items.Swords.SwordListRucoy
 import API.Items.Wands.WandsListRucoy
 import API.Items.items.Items
@@ -350,6 +351,18 @@ class Repository{
             val scrapper = Scrapper().Soup(url)
             val robes = RobesRucoyList().getRobesRucoyList(scrapper)
             return robes
+        } catch (e:Exception){
+            println("Error: ${e.message}")
+            return null
+        }
+    }
+
+    fun getShields(): ArrayList<Shield>? {
+        try {
+            val url = "https://rucoy-online.fandom.com/wiki/Shield_List"
+            val scrapper = Scrapper().Soup(url)
+            val shields = ShieldRucoyList().getShieldRucoyList(scrapper)
+            return shields
         } catch (e:Exception){
             println("Error: ${e.message}")
             return null

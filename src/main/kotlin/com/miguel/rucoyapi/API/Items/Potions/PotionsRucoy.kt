@@ -1,11 +1,10 @@
 package API.Items.Potions
 
-import model.ItemRucoyPotions
+import model.Potion
 import org.jsoup.nodes.Document
-import org.jsoup.nodes.Element
 
 class PotionsRucoy {
-    fun potionsList(scrapper: Document): ArrayList<ItemRucoyPotions> {
+    fun getItemPotionsRucoy(scrapper: Document): ArrayList<Potion> {
         val items = scrapper.getElementsByClass("article-table")
         val trs = items.select("tbody").select("tr")
         var imgItem: String?
@@ -13,7 +12,7 @@ class PotionsRucoy {
         var effect: String?
         var BuyNPC: String?
         var SellNPC: String?
-        val itemRucoyData = ArrayList<ItemRucoyPotions>()
+        val itemRucoyData = ArrayList<Potion>()
         trs.forEach { tr->
             //Validate sword name
             val td = tr.select("[style=text-align:center;]")
@@ -30,7 +29,7 @@ class PotionsRucoy {
             effect = td[1].text()
             BuyNPC = td[2].text()
             SellNPC = td[3].text()
-            itemRucoyData.add(ItemRucoyPotions(
+            itemRucoyData.add(Potion(
                 nameItem.toString(),
                 imgItem.toString(),
                 effect.toString(),

@@ -12,13 +12,15 @@ class PendantsRucoyList {
         tr.forEach { data->
             val imgItem: String?
             val td = data.children()
-            val nameItem: String?
+            var nameItem: String?
             //Validate sword name
             nameItem = if (td[0].children().text() == "" || td[0].children().text() == "File:Golden Training Bow.png"){
                 td[1].children().text()
             } else{
                 td[0].children().text()
             }
+            nameItem.also { nameItem = it.split("Lv ")[0] }
+            nameItem.also { nameItem = it!!.split("Lvl ")[0] }
             imgItem = if (data.select("img").attr("data-src") == ""){
                 data.select("img").attr("src")
             } else{
@@ -28,7 +30,7 @@ class PendantsRucoyList {
             val stats = td[3].text()
             rings_list.add(
                 Pendant(
-                    nameItem,
+                    nameItem.toString(),
                     imgItem,
                     level,
                     stats

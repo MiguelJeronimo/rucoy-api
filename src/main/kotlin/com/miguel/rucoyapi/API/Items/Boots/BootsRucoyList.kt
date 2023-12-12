@@ -14,13 +14,15 @@ class BootsRucoyList {
             val imgItem: String?
             //val td = data.select("[style=text-align:center;]")
             val td = data.children()
-            val nameItem: String?
+            var nameItem: String?
             //Validate sword name
             nameItem = if (td[0].children().text() == "" || td[0].children().text() == "File:Golden Training Bow.png"){
                 td[1].children().text()
             } else{
                 td[0].children().text()
             }
+            nameItem.also { nameItem = it.split("Lv ")[0] }
+            nameItem.also { nameItem = it!!.split("Lvl ")[0] }
             imgItem = if (data.select("img").attr("data-src") == ""){
                 data.select("img").attr("src")
             } else{
@@ -43,7 +45,7 @@ class BootsRucoyList {
             }
             boots_list.add(
                 Boots(
-                    nameItem,
+                    nameItem.toString(),
                     imgItem,
                     Defense,
                     BuyNPC,

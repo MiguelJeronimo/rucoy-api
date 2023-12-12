@@ -165,6 +165,7 @@ data class Pendant(
     val stats: String
 )
 data class ItemProfile(
+    val name: String,
     val description_general: String,
     val image: String,
     val type: String,

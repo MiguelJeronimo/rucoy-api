@@ -1,5 +1,7 @@
 package com.miguel.rucoyapi.repository
 
+import API.Items.Armor.ArmorRucoyList
+import API.Items.BackPack.BackPackList
 import API.Items.Bows.BowsListRucoy
 import API.Items.ItemsProfile.ItemsProfile
 import API.Items.Potions.PotionsRucoy
@@ -166,11 +168,11 @@ class Repository{
         }
     }
 
-    fun getPotions(): ArrayList<ItemRucoyPotions>? {
+    fun getPotions(): ArrayList<Potion>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Potions_List"
             val scrapper = Scrapper().Soup(url)
-            val potions_list = PotionsRucoy().potionsList(scrapper)
+            val potions_list = PotionsRucoy().getItemPotionsRucoy(scrapper)
             return potions_list
         } catch (e:Exception){
             println("Error: ${e.message}")
@@ -188,4 +190,46 @@ class Repository{
             return null
         }
     }
+    /*items catalog*/
+
+    //val urlCreatures = "https://rucoy-online.fandom.com/wiki/Evil Santa"
+    //val urlCreatures = "https://rucoy-online.fandom.com/wiki/Dragon Warden"
+    //val urlItems = "https://rucoy-online.fandom.com/wiki/Sword_List"
+//    val urlItems = "https://rucoy-online.fandom.com/wiki/Rings_List"
+//    val backpack = "https://rucoy-online.fandom.com/wiki/Backpack_List"
+//    val belts = "https://rucoy-online.fandom.com/wiki/Belts_List"
+//    val legs = "https://rucoy-online.fandom.com/wiki/Legs_List"
+//    val url = "https://rucoy-online.fandom.com/wiki/Pendants_List"
+//    val hats = "https://rucoy-online.fandom.com/wiki/Hats_List"
+//    val hoods = "https://rucoy-online.fandom.com/wiki/Hoods_List"
+//    val helmets = "https://rucoy-online.fandom.com/wiki/Helmet_List"
+//    val boots = "https://rucoy-online.fandom.com/wiki/Boots_List"
+//    val shield = "https://rucoy-online.fandom.com/wiki/Shield_List"
+//    val robes = "https://rucoy-online.fandom.com/wiki/Robes_List"
+//    val light_armor = "https://rucoy-online.fandom.com/wiki/Light_Armor_List"
+//    val armor = "https://rucoy-online.fandom.com/wiki/Armor_List"
+    fun getArmors(): ArrayList<Armor>? {
+        try {
+            val url = "https://rucoy-online.fandom.com/wiki/Armor_List"
+            val scrapper = Scrapper().Soup(url)
+            val armor_list = ArmorRucoyList().getArmorList(scrapper)
+            return armor_list
+        } catch (e:Exception){
+            println("Error: ${e.message}")
+            return null
+        }
+    }
+
+    fun getBackPacks(): ArrayList<BackPack>? {
+        try {
+            val url = "https://rucoy-online.fandom.com/wiki/Backpack_List"
+            val scrapper = Scrapper().Soup(url)
+            val backpacks = BackPackList().getBackPackList(scrapper)
+            return backpacks
+        } catch (e:Exception){
+            println("Error: ${e.message}")
+            return null
+        }
+    }
+
 }

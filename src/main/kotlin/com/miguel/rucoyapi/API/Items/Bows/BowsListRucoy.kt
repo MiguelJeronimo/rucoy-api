@@ -1,8 +1,8 @@
 package API.Items.Bows
 
 import model.ItemRucoyData
-import model.ItemsRucoyData
 import org.jsoup.nodes.Document
+import java.util.*
 
 class BowsListRucoy {
     fun getBowList(scrapper: Document): ArrayList<ItemRucoyData> {
@@ -15,13 +15,15 @@ class BowsListRucoy {
             val imgItem: String?
             //val td = data.select("[style=text-align:center;]")
             val td = data.children()
-            val nameItem: String?
+            var nameItem: String?
             //Validate sword name
             nameItem = if (td[0].children().text() == "" || td[0].children().text() == "File:Golden Training Bow.png"){
                 td[1].children().text()
             } else{
                 td[0].children().text()
             }
+            nameItem.also { nameItem = it.split("Lv ")[0] }
+            nameItem.also { nameItem = it!!.split("Lvl ")[0] }
             imgItem = if (data.select("img").attr("data-src") == ""){
                 data.select("img").attr("src")
             } else{
@@ -51,7 +53,7 @@ class BowsListRucoy {
             }
             bow_list.add(
                 ItemRucoyData(
-                    nameItem,
+                    nameItem.toString(),
                     imgItem,
                     Damage,
                     BuyNPC as MutableList<String>,

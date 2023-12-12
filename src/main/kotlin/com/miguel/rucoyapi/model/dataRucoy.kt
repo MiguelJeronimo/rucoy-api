@@ -7,7 +7,7 @@ data class Mele(val rank:String,val name:String,val status:String, val mele:Stri
 data class Distance(val rank:String,val name:String,val status:String, val distance:String)
 data class Magic(val rank:String,val name:String,val status:String, val magic:String)
 data class Defense(val rank:String,val name:String,val status:String, val defense:String)
-data class Guild(val name: String, val description:String, val founded_on:String, val members: ArrayList<Members>)
+data class Guild(val name: String, val description:String, val founded_on:String, val member: ArrayList<Members>)
 data class Members(val name:String,val supporter:String, val level: String,val join_date:String)
 //data class Characters(val Character: CharactersDataGeneral)
 data class CharactersDataGeneral(
@@ -44,12 +44,125 @@ data class ItemRucoyData(
     val drop_by: MutableList<String>,
     val sell_npc: MutableList<String>
 )
-data class ItemRucoyPotions(
+
+data class Potion(
     val potion_name:String,
     val img: String,
     val efect: String,
     val buy_npc: String,
     val sell_npc: String
+)
+
+data class Ring(
+    val name: String,
+    val img:String,
+    val levelRequeriment: String,
+    val stats: String
+)
+data class Belt(
+    val name:String,
+    val img: String,
+    val capacity: String,
+    val buy_npc: String,
+    val sell_npc: String,
+    val drop_by: ArrayList<String>
+)
+
+data class Legs(
+    val name:String,
+    val img: String,
+    val capacity: String,
+    val buy_npc: String,
+    val sell_npc: String,
+    val drop_by: ArrayList<String>
+)
+data class BackPack(
+    val name:String,
+    val img: String,
+    val capacity: String,
+    val buy_npc: String,
+    val sell_npc: String,
+    val drop_by: ArrayList<String>
+)
+
+data class Helmet(
+    val name:String,
+    val img: String,
+    val defense: String,
+    val buy_npc: String,
+    val sell_npc: String,
+    val drop_by: String?
+)
+data class Boots(
+    val name:String,
+    val img: String,
+    val defense: String,
+    val buy_npc: String,
+    val sell_npc: String,
+    val drop_by: String?
+)
+data class Shield(
+    val name:String,
+    val img: String,
+    val defense: String,
+    val buy_npc: String,
+    val sell_npc: String,
+    val drop_by: String?
+)
+data class Robe(
+    val name:String,
+    val img: String,
+    val defense: String,
+    val magic_level: String,
+    val buy_npc: String,
+    val sell_npc: String,
+    val drop_by: String?
+)
+
+data class LightArmor(
+    val name:String,
+    val img: String,
+    val defense: String,
+    val speed: String,
+    val distances: String,
+    val buy_npc: String,
+    val sell_npc: String,
+    val drop_by: String?
+)
+data class Hat(
+    val name:String,
+    val img: String,
+    val defense: String,
+    val magic_level: String,
+    val buy_npc: String,
+    val sell_npc: String,
+    val drop_by: String?
+)
+
+data class Armor(
+    val name:String,
+    val img: String,
+    val defense: String,
+    val buy_npc: String,
+    val sell_npc: String,
+    val drop_by: String?
+)
+
+data class Hood(
+    val name:String,
+    val img: String,
+    val Defense: String,
+    val Speed: String,
+    val buy_npc: String,
+    val sell_npc: String,
+    val drop_by: ArrayList<String>?
+)
+
+data class Pendant(
+    val name: String,
+    val img:String,
+    val levelRequeriment: String,
+    val stats: String
 )
 data class ItemProfile(
     val name: String,
@@ -62,6 +175,7 @@ data class ItemProfile(
     val cost_to_buy: String,
     val gold_for_sell: String
 )
+
 data class Category(
     val url: String,
     val category: String

@@ -6,14 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class BowsController {
-
-    @GetMapping("api/v1/bows")
-    fun getBowsList(): Any {
+class PendantsController {
+    @GetMapping("api/v1/pendants")
+    fun getPendantsArmorList(): Any {
         return try {
-            val bowsList = Repository().bowsList()
-            if(bowsList != null){
-                return responses.response(200, bowsList)
+            val pendantsList = Repository().getPendants()
+            if(pendantsList != null){
+                return responses.response(200, pendantsList)
             } else {
                 return responses.Errors(
                     400,

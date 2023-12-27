@@ -46,9 +46,9 @@ data class ItemRucoyData(
 )
 
 data class Potion(
-    val potion_name:String,
+    val name:String,
     val img: String,
-    val efect: String,
+    val effect: String,
     val buy_npc: String,
     val sell_npc: String
 )

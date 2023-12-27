@@ -6,7 +6,7 @@ import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 
 class SwordListRucoy {
-    fun getSwordList(scrapper: Document): ItemsRucoyData {
+    fun getSwordList(scrapper: Document): ArrayList<ItemRucoyData> {
         val items = scrapper.getElementsByClass("article-table")[1]
         val tr = items.select("tbody").select("tr")
         val itemRucoyData = ArrayList<ItemRucoyData>()
@@ -65,6 +65,6 @@ class SwordListRucoy {
             )
         }
         itemRucoyData.removeFirst()
-        return ItemsRucoyData(itemRucoyData)
+        return itemRucoyData
     }
 }

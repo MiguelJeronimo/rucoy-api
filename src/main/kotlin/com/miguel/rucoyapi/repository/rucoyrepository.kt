@@ -133,7 +133,7 @@ class Repository{
         }
     }
 
-    fun swordsList(): ItemsRucoyData? {
+    fun swordsList(): ArrayList<ItemRucoyData>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Sword_List"
             val scrapper = Scrapper().Soup(url)

@@ -22,5 +22,4 @@ class SwordsController {
             return responses.Errors(500, error.stackTraceToString())
         }
     }
-
 }

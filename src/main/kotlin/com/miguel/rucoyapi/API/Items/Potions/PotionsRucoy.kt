@@ -21,6 +21,8 @@ class PotionsRucoy {
             } else{
                 nameItem = td[0].children().text()
             }
+            val data = nameItem!!.split(" ")
+            val name = nameItem!!.replace(data.last(),"Potion", ignoreCase = false)
             if (tr.select("img").attr("data-src") == ""){
                 imgItem = tr.select("img").attr("src")
             } else{
@@ -30,7 +32,7 @@ class PotionsRucoy {
             BuyNPC = td[2].text()
             SellNPC = td[3].text()
             itemRucoyData.add(Potion(
-                nameItem.toString(),
+                name,
                 imgItem.toString(),
                 effect.toString(),
                 BuyNPC.toString(),

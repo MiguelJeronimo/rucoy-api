@@ -35,7 +35,7 @@ class ChatSocketHandler : TextWebSocketHandler() {
 
     override fun afterConnectionClosed(session: WebSocketSession, status: CloseStatus) {
         super.afterConnectionClosed(session, status)
-        println("Conexión cerrada: $session, status:")
+        println("Conexión cerrada: $session, status: $status")
         sessions.remove(session)
     }
 

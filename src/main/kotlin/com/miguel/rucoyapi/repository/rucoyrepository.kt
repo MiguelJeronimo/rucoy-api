@@ -25,6 +25,7 @@ import API.guildss.GuildsData
 import API.higcoresrucoy.*
 import API.news.New
 import Jsoup.Scrapper
+import com.miguel.rucoyapi.API.guildss.Guilds
 import model.*
 
 class Repository{
@@ -33,6 +34,17 @@ class Repository{
             val url = "https://www.rucoyonline.com/guild/${guildName}"
             val scrapper = Scrapper().Soup(url)
             val guilds = GuildsData().dataGuild(scrapper)
+            return guilds
+        } catch (e:Exception){
+            println("Error: ${e.message}")
+            return null
+        }
+    }
+    fun guildsList(pager:String): GuildsListModel? {
+        try {
+            val url = "https://www.rucoyonline.com/guilds?page=$pager"
+            val scrapper = Scrapper().Soup(url)
+            val guilds = Guilds().getGuildsList(scrapper)
             return guilds
         } catch (e:Exception){
             println("Error: ${e.message}")

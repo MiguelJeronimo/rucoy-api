@@ -6,10 +6,9 @@ import java.util.*
 
 class BowsListRucoy {
     fun getBowList(scrapper: Document): ArrayList<ItemRucoyData> {
-        var bow_list = ArrayList<ItemRucoyData>()
+        val bow_list = ArrayList<ItemRucoyData>()
         val items = scrapper.getElementsByClass("article-table")
-        val tr = items.select("tbody").select("tr")
-        //println(tr)
+        val tr = items[1].select("tbody").select("tr")
         val itemRucoyData = ArrayList<ItemRucoyData>()
         tr.forEach { data->
             val imgItem: String?

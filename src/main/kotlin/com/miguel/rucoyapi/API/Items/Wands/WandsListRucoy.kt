@@ -5,11 +5,9 @@ import org.jsoup.nodes.Document
 
 class WandsListRucoy {
     fun getWandsList(scrapper: Document): ArrayList<ItemRucoyData> {
-        var bow_list = ArrayList<ItemRucoyData>()
+        val bow_list = ArrayList<ItemRucoyData>()
         val items = scrapper.getElementsByClass("article-table")
-        val tr = items.select("tbody").select("tr")
-        //println(tr)
-        val itemRucoyData = ArrayList<ItemRucoyData>()
+        val tr = items[1].select("tbody").select("tr")
         tr.forEach { data->
             val imgItem: String?
             //val td = data.select("[style=text-align:center;]")

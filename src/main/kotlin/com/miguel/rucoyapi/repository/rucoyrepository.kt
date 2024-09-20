@@ -27,27 +27,35 @@ import API.news.New
 import Jsoup.Scrapper
 import com.miguel.rucoyapi.API.guildss.Guilds
 import model.*
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
+import kotlin.math.log
 
 class Repository{
+    private val logger: Logger = LogManager.getLogger(Repository::class.java)
     fun SearchGuilds(guildName:String): Guild? {
         try {
             val url = "https://www.rucoyonline.com/guild/${guildName}"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val guilds = GuildsData().dataGuild(scrapper)
+            logger.info("GuildData: $guilds")
             return guilds
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("SearchGuild fail to: ${e.stackTraceToString()}")
             return null
         }
     }
     fun guildsList(pager:String): GuildsListModel? {
         try {
             val url = "https://www.rucoyonline.com/guilds?page=$pager"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val guilds = Guilds().getGuildsList(scrapper)
+            logger.info("Guilds: $guilds")
             return guilds
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("GuildsList fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -55,11 +63,13 @@ class Repository{
     fun NewsRucoy(): newsRucoy? {
         try {
             val url = "https://www.rucoyonline.com/news"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val news = New().NewsRucoy(scrapper)
+            logger.info("News: $news")
             return news
         } catch (e: Exception){
-            println("Error: ${e.message}")
+            logger.fatal("NewsRucoy fail to: ${e.stackTraceToString()}")
             return null
         }
 
@@ -67,11 +77,13 @@ class Repository{
     fun SearchCharacter(characterName: String): CharactersDataGeneral? {
         try {
             val url = "https://www.rucoyonline.com/characters/${characterName}"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val character = CharactersRucoy().searchCharacter(scrapper)
+            logger.info("Character info: $character")
             return character
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("SearchCharacter fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -79,44 +91,52 @@ class Repository{
     fun highScoresRucoyExperience(profession:String): ArrayList<HighScore>? {
         try {
             val url = "https://www.rucoyonline.com/highscores/${profession}"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val highScore = HighScoreExperiencia(scrapper)
+            logger.info("Experience: $highScore")
             return highScore
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("highScoresRucoyExperience fail to: ${e.stackTraceToString()}")
             return null
         }
     }
     fun highScoresRucoyMelee(profession:String): ArrayList<Mele>? {
         try {
             val url = "https://www.rucoyonline.com/highscores/${profession}"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val highScore = hightScoreMele(scrapper)
+            logger.info("Melee: $highScore")
             return highScore
         }catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("highScoresRucoyMelee fail to: ${e.stackTraceToString()}")
             return null
         }
     }
     fun highScoresRucoyDistance(profession:String): ArrayList<Distance>? {
         try {
             val url = "https://www.rucoyonline.com/highscores/${profession}"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val highScore = hightScoreDistance(scrapper)
+            logger.info("Distances highScore: $highScore")
             return highScore
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("highScoresRucoyDistance fail to: ${e.stackTraceToString()}")
             return null
         }
     }
     fun highScoresRucoyMagic(profession:String): ArrayList<Magic>? {
         try {
             val url = "https://www.rucoyonline.com/highscores/${profession}"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val highScore = hightScoreMagic(scrapper)
+            logger.info("ML highScore: $highScore")
             return highScore
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("highScoresRucoyMagic fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -124,11 +144,13 @@ class Repository{
     fun highScoresRucoyDefense(profession:String): ArrayList<Defense>? {
         try {
             val url = "https://www.rucoyonline.com/highscores/${profession}"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val highScore = hightScoreDefense(scrapper)
+            logger.info("Defense highScore: $highScore")
             return highScore
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("highScoresRucoyDefense fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -136,11 +158,13 @@ class Repository{
     fun creatureProfile(creatureName:String): model.Creatures? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/${creatureName}"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val creatureData = Creatures().getGeneralDataCreature(scrapper)
+            logger.info("Creature Profile: $creatureData")
             return creatureData
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("creatureProfile fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -148,11 +172,13 @@ class Repository{
     fun swordsList(): ArrayList<ItemRucoyData>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Sword_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val swordList = SwordListRucoy().getSwordList(scrapper)
+            logger.info("Sword List: $swordList")
             return swordList
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("swordsList fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -160,33 +186,39 @@ class Repository{
     fun bowsList(): ArrayList<ItemRucoyData>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Bow_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val bows_list = BowsListRucoy().getBowList(scrapper)
+            logger.info("Bows List: $bows_list")
             return bows_list
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("bowsList fail to: ${e.stackTraceToString()}")
             return null
         }
     }
     fun wandsList(): ArrayList<ItemRucoyData>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Wand_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val wands_list = WandsListRucoy().getWandsList(scrapper)
+            logger.info("Wands List: $wands_list")
             return wands_list
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("wandsList fail to: ${e.stackTraceToString()}")
             return null
         }
     }
     fun itemProfile(name:String): ItemProfile? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/${name}"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
-            val wands_list = ItemsProfile().itemsProfile(scrapper)
-            return wands_list
+            val itemProfile = ItemsProfile().itemsProfile(scrapper)
+            logger.info("Item Profile: $itemProfile")
+            return itemProfile
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("itemProfile fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -194,22 +226,26 @@ class Repository{
     fun getPotions(): ArrayList<Potion>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Potions_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val potions_list = PotionsRucoy().getItemPotionsRucoy(scrapper)
+            logger.info("Potions list: $potions_list")
             return potions_list
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getPotions fail to: ${e.stackTraceToString()}")
             return null
         }
     }
     fun getEquipment(): ArrayList<Category>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Equipment"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val equipment = Items().getItemsList(scrapper)
+            logger.info("Equipments: $equipment")
             return equipment
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getEquipment fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -234,11 +270,13 @@ class Repository{
     fun getArmors(): ArrayList<Armor>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Armor_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val armor_list = ArmorRucoyList().getArmorList(scrapper)
+            logger.info("Armor List: $armor_list")
             return armor_list
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getArmors fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -246,11 +284,13 @@ class Repository{
     fun getBackPacks(): ArrayList<BackPack>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Backpack_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val backpacks = BackPackList().getBackPackList(scrapper)
+            logger.info("Backpacks: $backpacks")
             return backpacks
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getBackPacks fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -258,11 +298,13 @@ class Repository{
     fun getBelts(): ArrayList<Belt>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Belts_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val belts = BeltsRucoyList().getBeltsRucoyList(scrapper)
+            logger.info("Belts list: $belts")
             return belts
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getBelts fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -270,44 +312,52 @@ class Repository{
     fun getBoots(): ArrayList<Boots>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Boots_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val boots = BootsRucoyList().getBootsRucoyList(scrapper)
+            logger.info("Boots List: $boots")
             return boots
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getBoots fail to: ${e.stackTraceToString()}")
             return null
         }
     }
     fun getHats(): ArrayList<Hat>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Hats_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val hats = HatsRucoyList().getHatsRucoyList(scrapper)
+            logger.info("Hats List: $hats")
             return hats
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getHats fail to: ${e.stackTraceToString()}")
             return null
         }
     }
     fun getHelmets(): ArrayList<Helmet>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Helmet_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val helmets = HelmetsRucoyList().getRucoyRucoyList(scrapper)
+            logger.info("Helmets list: $helmets")
             return helmets
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getHelmets fail to: ${e.stackTraceToString()}")
             return null
         }
     }
     fun getHoods(): ArrayList<Hood>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Hoods_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val hoods = HoodsRucoyList().getHoodsRucoyList(scrapper)
+            logger.info("Hoods List: $hoods")
             return hoods
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getHoods fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -315,33 +365,39 @@ class Repository{
     fun getLegs(): ArrayList<Legs>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Legs_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val legs = LegsRucoyList().getLegsRucoyList(scrapper)
+            logger.info("Legs list: $legs")
             return legs
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getLegs fail to: ${e.stackTraceToString()}")
             return null
         }
     }
     fun getLightArmor(): ArrayList<LightArmor>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Light_Armor_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val lightArmor = LightArmorList().getLightArmorList(scrapper)
+            logger.info("Light Armor List: $lightArmor")
             return lightArmor
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getLightArmor fail to: ${e.stackTraceToString()}")
             return null
         }
     }
     fun getPendants(): ArrayList<Pendant>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Pendants_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val pendants = PendantsRucoyList().getPendantsList(scrapper)
+            logger.info("Pendants List: $pendants")
             return pendants
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getPendants fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -349,22 +405,26 @@ class Repository{
     fun getRings(): ArrayList<Ring>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Rings_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val rings = RingsList().getRingsList(scrapper)
+            logger.info("Rings List: $rings")
             return rings
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getRings fail to: ${e.stackTraceToString()}")
             return null
         }
     }
     fun getRobes(): ArrayList<Robe>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Robes_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val robes = RobesRucoyList().getRobesRucoyList(scrapper)
+            logger.info("Robes List: $robes")
             return robes
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getRobes fail to: ${e.stackTraceToString()}")
             return null
         }
     }
@@ -372,11 +432,13 @@ class Repository{
     fun getShields(): ArrayList<Shield>? {
         try {
             val url = "https://rucoy-online.fandom.com/wiki/Shield_List"
+            logger.info("URL to scrap: $url")
             val scrapper = Scrapper().Soup(url)
             val shields = ShieldRucoyList().getShieldRucoyList(scrapper)
+            logger.info("Shields List: $shields")
             return shields
         } catch (e:Exception){
-            println("Error: ${e.message}")
+            logger.fatal("getShields fail to: ${e.stackTraceToString()}")
             return null
         }
     }

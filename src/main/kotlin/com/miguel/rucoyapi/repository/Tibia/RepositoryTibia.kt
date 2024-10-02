@@ -1,8 +1,7 @@
 package com.miguel.rucoyapi.repository.Tibia
 
 import API.guildss.GuildsData
-import Jsoup.Scrapper
-import model.Guild
+import com.miguel.rucoyapi.data.network.jsoup.Scrapper
 
 class RepositoryTibia {
     fun rashid(guildName:String) {

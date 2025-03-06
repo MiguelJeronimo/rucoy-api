@@ -1,6 +1,6 @@
 package com.miguel.rucoyapi.data.repositories
 
-import com.miguel.rucoyapi.repository.Rucoy
+import com.miguel.rucoyapi.data.network.API.Rucoy
 import model.*
 
 class RepositoryRucoyWikiImp(private val rucoy: Rucoy): RepositoryRucoyWiki {

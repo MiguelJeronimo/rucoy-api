@@ -1,9 +1,9 @@
 package com.miguel.rucoyapi.data.repositories
 
-import com.miguel.rucoyapi.repository.Rucoy
+import com.miguel.rucoyapi.data.network.API.Rucoy
 import model.*
 
-class RepositoryRucoyImp(private val rucoy:Rucoy): RepositoryRucoy {
+class RepositoryRucoyImp(private val rucoy: Rucoy): RepositoryRucoy {
     override fun guild(name: String): Guild? {
         return rucoy.SearchGuilds(name)
     }

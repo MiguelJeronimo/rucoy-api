@@ -1,4 +1,4 @@
-package com.miguel.rucoyapi.repository
+package com.miguel.rucoyapi.data.network.API
 
 import API.Items.Armor.ArmorRucoyList
 import API.Items.BackPack.BackPackList

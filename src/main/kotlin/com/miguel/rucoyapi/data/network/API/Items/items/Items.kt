@@ -13,13 +13,13 @@ class Items {
         val arrayCategory = ArrayList<Category>()
         tr.forEach {
             it.children().forEach {
-                val imgContainer = it.getElementsByClass("center")
-                val img = imgContainer.select("img")
+                //thumbimage ls-is-cached lazyloaded
+                val imgContainer = if (it.getElementsByClass("thumbimage").toString() !="") it.getElementsByClass("thumbimage") else it.getElementsByClass("thumbimage ls-is-cached lazyloaded")
                 val imgItem: String?
-                imgItem = if (img.attr("data-src") == ""){
-                    img.attr("src")
+                imgItem = if (imgContainer.attr("data-src") == ""){
+                    imgContainer.attr("src")
                 } else{
-                    img.attr("data-src")
+                    imgContainer.attr("data-src")
                 }
                 if (imgItem != ""){
                     arrayURL.add(imgItem)
@@ -32,6 +32,7 @@ class Items {
                 }
             }
         }
+
         for (i in 0..17){
             arrayCategory.add(
                 Category(

@@ -3,7 +3,7 @@ package com.miguel.rucoyapi.presentation.controllers
 import com.miguel.rucoyapi.data.repositories.RepositoryRucoyWikiImp
 import com.miguel.rucoyapi.domain.model.responses
 import com.miguel.rucoyapi.domain.usecases.UseCaseRucoyWiki
-import com.miguel.rucoyapi.repository.Rucoy
+import com.miguel.rucoyapi.data.network.API.Rucoy
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.http.ResponseEntity

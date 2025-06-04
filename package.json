@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "node index.js"  # Punto de entrada de la API
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "axios": "^0.21.1"  # u otras dependencias necesarias
+  }
+}

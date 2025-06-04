@@ -1,0 +1,7 @@
+management:
+  endpoints:
+    web:
+      base-path: /actuator  # Habilita el endpoint /actuator/health
+    endpoint:
+      health:
+        enabled: true

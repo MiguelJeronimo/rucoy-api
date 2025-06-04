@@ -1,0 +1,5 @@
+server:
+  port: ${PORT:8080}  # Usa el puerto de Railway o 8080 por defecto
+spring:
+  profiles:
+    active: production  # Perfil para entorno de producción

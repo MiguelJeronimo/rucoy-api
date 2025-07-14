@@ -29,7 +29,7 @@ import model.*
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
-class Rucoy{
+class Rucoy(): AbstractRucoy() {
     private val logger: Logger = LogManager.getLogger(Rucoy::class.java)
     fun SearchGuilds(guildName:String): Guild? {
         try {
@@ -99,6 +99,7 @@ class Rucoy{
             return null
         }
     }
+
     fun highScoresRucoyMelee(profession:String): ArrayList<Mele>? {
         try {
             val url = "https://www.rucoyonline.com/highscores/${profession}"

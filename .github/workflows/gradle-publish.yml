@@ -1,13 +1,18 @@
-name: Build and Release with Gradle
+name: rucoy-calculator release
 
 on:
   push:
+    tags:
+      - 'v*'  # O cualquier patrón como 'v0.0.1'
     branches:
       - main
+    
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 💥 Esto es lo importante
 
     steps:
       - name: Checkout code

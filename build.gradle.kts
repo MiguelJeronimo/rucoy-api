@@ -25,9 +25,10 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	//Corrutinas
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.4")
 	implementation ("org.springframework.boot:spring-boot-starter-websocket")
-	implementation("org.apache.logging.log4j:log4j-api:2.20.0")
-	implementation("org.apache.logging.log4j:log4j-core:2.20.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

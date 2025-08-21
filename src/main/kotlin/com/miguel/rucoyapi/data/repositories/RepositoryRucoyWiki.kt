@@ -3,24 +3,24 @@ package com.miguel.rucoyapi.data.repositories
 import model.*
 
 interface RepositoryRucoyWiki {
-    fun creature(name:String): Creatures?
-    fun item(name:String): ItemProfile?
-    fun swords(): ArrayList<ItemRucoyData>?
-    fun bows(): ArrayList<ItemRucoyData>?
-    fun wands(): ArrayList<ItemRucoyData>?
-    fun potions(): ArrayList<Potion>?
-    fun equipments(): ArrayList<Category>?
-    fun armors(): ArrayList<Armor>?
-    fun backpacks(): ArrayList<BackPack>?
-    fun belts(): ArrayList<Belt>?
-    fun boots(): ArrayList<Boots>?
-    fun hats(): ArrayList<Hat>?
-    fun helmets(): ArrayList<Helmet>?
-    fun hoods(): ArrayList<Hood>?
-    fun legs(): ArrayList<Legs>?
-    fun lightArmor(): ArrayList<LightArmor>?
-    fun pendants(): ArrayList<Pendant>?
-    fun rings(): ArrayList<Ring>?
-    fun robes(): ArrayList<Robe>?
-    fun shields(): ArrayList<Shield>?
+    suspend fun creature(name:String): Creatures?
+    suspend fun item(name:String): ItemProfile?
+    suspend fun swords(): ArrayList<ItemRucoyData>?
+    suspend fun bows(): ArrayList<ItemRucoyData>?
+    suspend fun wands(): ArrayList<ItemRucoyData>?
+    suspend fun potions(): ArrayList<Potion>?
+    suspend fun equipments(): ArrayList<Category>?
+    suspend fun armors(): ArrayList<Armor>?
+    suspend fun backpacks(): ArrayList<BackPack>?
+    suspend fun belts(): ArrayList<Belt>?
+    suspend fun boots(): ArrayList<Boots>?
+    suspend fun hats(): ArrayList<Hat>?
+    suspend fun helmets(): ArrayList<Helmet>?
+    suspend fun hoods(): ArrayList<Hood>?
+    suspend fun legs(): ArrayList<Legs>?
+    suspend fun lightArmor(): ArrayList<LightArmor>?
+    suspend fun pendants(): ArrayList<Pendant>?
+    suspend fun rings(): ArrayList<Ring>?
+    suspend fun robes(): ArrayList<Robe>?
+    suspend fun shields(): ArrayList<Shield>?
 }

@@ -17,7 +17,7 @@ class CharactersController {
     private val logger: Logger = LogManager.getLogger(CharactersController::class.java)
     @GetMapping("api/v1/characters/{name}")
     @NotNull
-    fun getCharacters(@PathVariable name: String): Any {
+    suspend fun getCharacters(@PathVariable name: String): Any {
         logger.info("init petition: api/v1/characters/$name")
         return try {
             if (name != null){

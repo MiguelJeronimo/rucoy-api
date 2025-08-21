@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 class BackPacksController {
     private val logger: Logger = LogManager.getLogger(BackPacksController::class.java)
     @GetMapping("api/v1/backpacks")
-    fun getBackPacksList(): Any {
+    suspend fun getBackPacksList(): Any {
         logger.info("init petition: api/v1/backpacks")
         return try {
             val repositoryRucoyWikiImp = RepositoryRucoyWikiImp(Rucoy())

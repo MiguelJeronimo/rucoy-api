@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 class ItemProfileController {
     private val logger: Logger = LogManager.getLogger(ItemProfileController::class.java)
     @GetMapping("api/v1/item/{name}")
-    fun getItemProfile(@PathVariable name: String): Any {
+    suspend fun getItemProfile(@PathVariable name: String): Any {
         logger.info("init petition: api/v1/item/$name")
         return try {
             if (name != null){

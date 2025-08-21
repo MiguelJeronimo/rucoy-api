@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 class NewsController {
     private val logger: Logger = LogManager.getLogger(NewsController::class.java)
     @GetMapping("api/v1/news")
-    fun getNews(): Any {
+    suspend fun getNews(): Any {
         logger.info("init petition")
         return try {
             val repositoryRucoy = RepositoryRucoyImp(Rucoy())

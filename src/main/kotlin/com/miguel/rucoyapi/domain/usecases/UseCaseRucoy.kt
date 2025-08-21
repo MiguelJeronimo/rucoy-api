@@ -8,17 +8,17 @@ import model.newsRucoy
 import java.util.ArrayList
 
 class UseCaseRucoy(private val rucoy: RepositoryRucoy) {
-    fun character(name:String): CharactersDataGeneral? {
+    suspend fun character(name:String): CharactersDataGeneral? {
         return rucoy.character(name)
     }
-    fun guild(name:String): Guild? {
+    suspend fun guild(name:String): Guild? {
         return rucoy.guild(name)
     }
-    fun guilds(pager:String): GuildsListModel? {
+    suspend fun guilds(pager:String): GuildsListModel? {
         return rucoy.guilds(pager)
     }
 
-    fun highScores(skill: String): ArrayList<out Any>? {
+    suspend fun highScores(skill: String): ArrayList<out Any>? {
         return when(skill){
             "experience"->{rucoy.highScoresExperience(skill)}
             "melee"->{rucoy.highScoresMele(skill)}
@@ -29,7 +29,7 @@ class UseCaseRucoy(private val rucoy: RepositoryRucoy) {
         }
     }
 
-    fun news(): newsRucoy? {
+    suspend fun news(): newsRucoy? {
         return rucoy.news()
     }
 }

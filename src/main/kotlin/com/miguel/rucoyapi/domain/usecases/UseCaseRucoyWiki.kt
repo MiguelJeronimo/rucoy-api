@@ -91,7 +91,7 @@ class UseCaseRucoyWiki(private val repository: RepositoryRucoyWiki) {
         return repository.swords()
     }
 
-    suspend fun wan56ds(): ArrayList<ItemRucoyData>? {
+    suspend fun wands(): ArrayList<ItemRucoyData>? {
         return repository.wands()
     }
 

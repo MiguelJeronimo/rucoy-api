@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 class ArmorController {
     private val logger: Logger = LogManager.getLogger(ArmorController::class.java)
     @GetMapping("api/v1/armors")
-    fun getArmorList(): Any {
+    suspend fun getArmorList(): Any {
         return try {
             val repositoryRucoyWikiImp = RepositoryRucoyWikiImp(Rucoy())
             val useCaseRucoyWiki = UseCaseRucoyWiki(repositoryRucoyWikiImp)

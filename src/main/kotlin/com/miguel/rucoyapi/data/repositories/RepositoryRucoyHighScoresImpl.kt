@@ -8,43 +8,43 @@ import model.Magic
 import model.Mele
 
 class RepositoryRucoyHighScoresImpl(private val rucoy: Rucoy): RepositoryRucoyHighScores {
-    override fun experience(path: String): ArrayList<HighScore>? {
+    override suspend fun experience(path: String): ArrayList<HighScore>? {
         return rucoy.highScores(path)
     }
 
-    override fun experience(type: String, date: String): ArrayList<HighScore>? {
+    override suspend fun experience(type: String, date: String): ArrayList<HighScore>? {
         return rucoy.highScores(type, date)
     }
 
-    override fun melee(path: String): ArrayList<Mele>? {
+    override suspend fun melee(path: String): ArrayList<Mele>? {
         return rucoy.highScoresMele(path)
     }
 
-    override fun melee(type: String, date: String): ArrayList<Mele>? {
+    override suspend fun melee(type: String, date: String): ArrayList<Mele>? {
         return rucoy.highScoresMele(type, date)
     }
 
-    override fun distance(path: String): ArrayList<Distance>? {
+    override suspend fun distance(path: String): ArrayList<Distance>? {
         return rucoy.highScoresDistance(path)
     }
 
-    override fun distance(type: String, date: String): ArrayList<Distance>? {
+    override suspend fun distance(type: String, date: String): ArrayList<Distance>? {
         return rucoy.highScoresDistance(type, date)
     }
 
-    override fun magic(path: String): ArrayList<Magic>? {
+    override suspend fun magic(path: String): ArrayList<Magic>? {
         return rucoy.highScoresMagic(path)
     }
 
-    override fun magic(type: String, date: String): ArrayList<Magic>? {
+    override suspend fun magic(type: String, date: String): ArrayList<Magic>? {
         return rucoy.highScoresMagic(type, date)
     }
 
-    override fun defense(path: String): ArrayList<Defense>? {
+    override suspend fun defense(path: String): ArrayList<Defense>? {
         return rucoy.highScoresDefence(path)
     }
 
-    override fun defense(type: String, date: String): ArrayList<Defense>? {
+    override suspend fun defense(type: String, date: String): ArrayList<Defense>? {
         return rucoy.highScoresDefence(type, date)
     }
 }

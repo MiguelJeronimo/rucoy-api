@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 class GuildsController {
     private val logger: Logger = LogManager.getLogger(GuildsController::class.java)
     @GetMapping("/api/v1/guilds/{pager}")
-    fun getArmorList(@PathVariable pager: String): Any {
+    suspend fun getArmorList(@PathVariable pager: String): Any {
         logger.info("init petition: /api/v1/guilds/$pager")
         return try {
             if (pager != null && pager !="0"){

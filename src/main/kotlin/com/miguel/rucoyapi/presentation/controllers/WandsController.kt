@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 class WandsController {
     private val logger: Logger = LogManager.getLogger(WandsController::class.java)
     @GetMapping("api/v1/wands")
-    fun getWands(): Any {
+    suspend fun getWands(): Any {
         logger.info("init petition: api/v1/wands")
         return try {
             val repositoryRucoyWikiImp = RepositoryRucoyWikiImp(Rucoy())

@@ -24,7 +24,7 @@ class HighScoresController {
     private val useCaseRucoyHighScores = UseCaseRucoyHighScores(repositoryRucoyHighScores)
 
     @GetMapping("api/v1/highscores/{highscore}")
-    fun getHighScores(@PathVariable highscore: String): Any {
+    suspend fun getHighScores(@PathVariable highscore: String): Any {
         logger.info("init petition: api/v1/highscores/$highscore")
         return try {
             if (highscore != null){
@@ -54,7 +54,7 @@ class HighScoresController {
     * Cuando no hay highscores en el get
     * */
     @GetMapping("api/v1/highscores")
-    fun getHighScore(): Any {
+    suspend fun getHighScore(): Any {
         logger.info("init petition: api/v1/highscores")
         return try{
             val repositoryRucoyImp = RepositoryRucoyImp(Rucoy())
@@ -69,7 +69,7 @@ class HighScoresController {
     }
 
     @GetMapping("api/v1/highscores-by-path")
-    fun highScores(
+    suspend fun highScores(
         @RequestParam(required = true) path: String,
     ): Any {
         logger.info("init petition: api/v1/highscores-by-path")
@@ -132,7 +132,7 @@ class HighScoresController {
     }
 
     @GetMapping("api/v1/highscores-by-date")
-    fun highScores(
+    suspend fun highScores(
         @RequestParam(required = true) type: String,
         @RequestParam(required = true) month: String,
         @RequestParam(required = true) year: String

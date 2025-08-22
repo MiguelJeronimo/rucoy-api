@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 class HoodsController {
     private val logger: Logger = LogManager.getLogger(HoodsController::class.java)
     @GetMapping("api/v1/hoods")
-    fun getHoodsList(): Any {
+    suspend fun getHoodsList(): Any {
         logger.info("init petition: api/v1/hoods")
         return try {
             val repositoryRucoyWikiImp = RepositoryRucoyWikiImp(Rucoy())

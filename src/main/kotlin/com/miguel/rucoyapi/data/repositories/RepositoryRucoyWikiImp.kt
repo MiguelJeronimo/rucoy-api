@@ -4,83 +4,83 @@ import com.miguel.rucoyapi.data.network.API.Rucoy
 import model.*
 
 class RepositoryRucoyWikiImp(private val rucoy: Rucoy): RepositoryRucoyWiki {
-    override fun creature(name: String): Creatures? {
+    override suspend fun creature(name: String): Creatures? {
         return rucoy.creatureProfile(name)
     }
 
-    override fun item(name: String): ItemProfile? {
+    override suspend fun item(name: String): ItemProfile? {
         return rucoy.itemProfile(name)
     }
 
-    override fun swords(): ArrayList<ItemRucoyData>? {
+    override suspend fun swords(): ArrayList<ItemRucoyData>? {
         return rucoy.swordsList()
     }
 
-    override fun bows(): ArrayList<ItemRucoyData>? {
+    override suspend fun bows(): ArrayList<ItemRucoyData>? {
         return rucoy.bowsList()
     }
 
-    override fun wands(): ArrayList<ItemRucoyData>? {
+    override suspend fun wands(): ArrayList<ItemRucoyData>? {
         return rucoy.wandsList()
     }
 
-    override fun potions(): ArrayList<Potion>? {
+    override suspend fun potions(): ArrayList<Potion>? {
         return rucoy.getPotions()
     }
 
-    override fun equipments(): ArrayList<Category>? {
+    override suspend fun equipments(): ArrayList<Category>? {
         return rucoy.getEquipment()
     }
 
-    override fun armors(): ArrayList<Armor>? {
+    override suspend fun armors(): ArrayList<Armor>? {
         return rucoy.getArmors()
     }
 
-    override fun backpacks(): ArrayList<BackPack>? {
+    override suspend fun backpacks(): ArrayList<BackPack>? {
         return rucoy.getBackPacks()
     }
 
-    override fun belts(): ArrayList<Belt>? {
+    override suspend fun belts(): ArrayList<Belt>? {
         return rucoy.getBelts()
     }
 
-    override fun boots(): ArrayList<Boots>? {
+    override suspend fun boots(): ArrayList<Boots>? {
         return rucoy.getBoots()
     }
 
-    override fun hats(): ArrayList<Hat>? {
+    override suspend fun hats(): ArrayList<Hat>? {
         return rucoy.getHats()
     }
 
-    override fun helmets(): ArrayList<Helmet>? {
+    override suspend fun helmets(): ArrayList<Helmet>? {
         return rucoy.getHelmets()
     }
 
-    override fun hoods(): ArrayList<Hood>? {
+    override suspend fun hoods(): ArrayList<Hood>? {
         return rucoy.getHoods()
     }
 
-    override fun legs(): ArrayList<Legs>? {
+    override suspend fun legs(): ArrayList<Legs>? {
         return rucoy.getLegs()
     }
 
-    override fun lightArmor(): ArrayList<LightArmor>? {
+    override suspend fun lightArmor(): ArrayList<LightArmor>? {
         return rucoy.getLightArmor()
     }
 
-    override fun pendants(): ArrayList<Pendant>? {
+    override suspend fun pendants(): ArrayList<Pendant>? {
         return rucoy.getPendants()
     }
 
-    override fun rings(): ArrayList<Ring>? {
+    override suspend fun rings(): ArrayList<Ring>? {
         return rucoy.getRings()
     }
 
-    override fun robes(): ArrayList<Robe>? {
+    override suspend fun robes(): ArrayList<Robe>? {
         return rucoy.getRobes()
     }
 
-    override fun shields(): ArrayList<Shield>? {
+    override suspend fun shields(): ArrayList<Shield>? {
         return rucoy.getShields()
     }
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 class LightArmorController {
     private val logger: Logger = LogManager.getLogger(com.miguel.rucoyapi.presentation.controllers.LightArmorController::class.java)
     @GetMapping("api/v1/lightarmor")
-    fun getLightArmorList(): Any {
+    suspend fun getLightArmorList(): Any {
         logger.info("init petition: api/v1/lightarmor")
         return try {
             val repositoryRucoyWikiImp = RepositoryRucoyWikiImp(Rucoy())

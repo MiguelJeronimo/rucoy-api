@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 class CreatureProfileController {
     private val logger: Logger = LogManager.getLogger(CreatureProfileController::class.java)
     @GetMapping("api/v1/creature/{name}")
-    fun getCreatureProfile(@PathVariable name: String): Any {
+    suspend fun getCreatureProfile(@PathVariable name: String): Any {
         logger.info("init petition: api/v1/creature/${name}")
         return try {
             if (name != null){

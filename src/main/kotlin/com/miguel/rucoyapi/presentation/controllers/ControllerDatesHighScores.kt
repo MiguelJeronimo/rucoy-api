@@ -23,7 +23,7 @@ class ControllerDatesHighScores {
     private val repository = RepositoryRucoyDatesImpl(rucoy)
     private val useCase = UseCaseRucoyDates(repository)
     @GetMapping("/dates/{type}")
-    fun dates(@PathVariable type:String): ResponseEntity<out Any?> {
+    suspend fun dates(@PathVariable type:String): ResponseEntity<out Any?> {
         return try {
             val response = useCase.dates(type)
             if (response != null){
@@ -40,7 +40,7 @@ class ControllerDatesHighScores {
     }
 
     @GetMapping("/dates/by-year/{type}/{year}")
-    fun datesFindByYears(@PathVariable type: String, @PathVariable year: String): ResponseEntity<out Any?> {
+    suspend fun datesFindByYears(@PathVariable type: String, @PathVariable year: String): ResponseEntity<out Any?> {
         return try {
             val response = useCase.datesFindByYears(type, year)
             if (response != null){
@@ -57,7 +57,7 @@ class ControllerDatesHighScores {
     }
 
     @GetMapping("/dates/by-month/{type}/{month}")
-    fun datesFindByMonth(@PathVariable type: String, @PathVariable month: String): ResponseEntity<out Any?> {
+    suspend fun datesFindByMonth(@PathVariable type: String, @PathVariable month: String): ResponseEntity<out Any?> {
         return try {
             val response = useCase.datesFindByMonth(type, month)
             if (response != null){

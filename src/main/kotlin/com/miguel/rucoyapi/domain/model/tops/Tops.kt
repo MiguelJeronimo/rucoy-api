@@ -61,3 +61,23 @@ data class TopStats(
     val lastDate: String,
     val category: String?
 )
+
+data class HistoryDTo(
+    var tops: ArrayList<History>? = null
+)
+
+data class History(
+    val rank: Int,
+    val category: String?,
+    val name: String,
+    val level: Int,
+    val levels: Int?,
+    @JsonProperty("start_date")
+    val startDate: String,
+    @JsonProperty("last_date")
+    val lastDate: String,
+    @JsonProperty("start_date_time_stamp")
+    val startDateTimeStamp: Long,
+    @JsonProperty("last_date_time_stamp")
+    val lastDateTimeStamp: Long,
+)

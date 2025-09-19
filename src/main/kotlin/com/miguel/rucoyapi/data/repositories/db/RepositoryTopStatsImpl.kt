@@ -70,4 +70,51 @@ class RepositoryTopStatsImpl(
             throw CustomError("Failed to obtain information ")
         }
     }
+
+    override suspend fun history(name: String, idDate:String): Turso? {
+        return try {
+            val header = HttpHeaders().apply {
+                setBearerAuth(token)
+                contentType = MediaType.APPLICATION_JSON
+            }
+            val body =  mapOf(
+                "requests" to listOf(
+                    mapOf(
+                        "type" to "execute",
+                        "stmt" to mapOf(
+                            "sql" to "SELECT\n" +
+                                    "  r.rank,\n" +
+                                    "  cat.name AS category,\n" +
+                                    "  c.name,\n" +
+                                    "  r.level,\n" +
+                                    "  p.levels,\n" +
+                                    "  r.startDate,\n" +
+                                    "  r.lastDate,\n" +
+                                    "  r.startDateTimeStamp,\n" +
+                                    "  r.lastDateTimeStamp\n" +
+                                    "FROM Progress p\n" +
+                                    "JOIN Character c ON c.idCharacter = p.idCharacter\n" +
+                                    "JOIN Ranking r ON r.idCharacter = c.idCharacter AND r.idCategory = p.idCategory\n" +
+                                    "JOIN Category cat ON p.idCategory = cat.idCategory\n" +
+                                    "JOIN Date date on date.idDate = r.idDate\n" +
+                                    "WHERE c.name = '$name' and date.idDate = '$idDate'\n" +
+                                    "ORDER BY r.rank ASC;"
+                        )
+                    ),
+                    mapOf("type" to "close")
+                )
+            )
+            logger.info("Body: $body")
+            val request = HttpEntity(body,header)
+            val response  = RestTemplate().postForEntity<Turso>(url, request = request, Turso::class.java)
+            if (!response.statusCode.is2xxSuccessful){
+                logger.error("Error: ${response.body}")
+                throw CustomError("Failed to obtain information")
+            }
+            response.body
+        } catch (e: Exception){
+            logger.error(e)
+            throw CustomError("Failed to obtain information ")
+        }
+    }
 }

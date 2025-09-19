@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface RepositoryTopStats {
     suspend fun getStatsByName(name:String, idCategory:String): Turso?
+    suspend fun history(name:String, idDate:String): Turso?
 }

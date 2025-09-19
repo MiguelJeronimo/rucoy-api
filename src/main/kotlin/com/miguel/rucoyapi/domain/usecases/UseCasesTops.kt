@@ -39,10 +39,11 @@ class UseCasesTops {
                     startDate= row[6].value!!,
                     lastDate= row[7].value!!,
                     experience = row[8].value!!.toLong(),
-                    levels = row[9].value!!.toInt(),
-                    gainExp = row[10].value,
-                    progressPercent = row[11].value,
-                    category = row[12].value
+                    experienceString = row[9].value!!,
+                    levels = row[10].value!!.toInt(),
+                    gainExp = row[11].value,
+                    progressPercent = row[12].value,
+                    category = row[13].value
                 )
                 listTop.add(top)
             }
@@ -73,10 +74,11 @@ class UseCasesTops {
                     startDate= row[6].value!!,
                     lastDate= row[7].value!!,
                     experience = row[8].value?.toLong(),
-                    levels = row[9].value!!.toInt(),
-                    gainExp = row[10].value,
-                    progressPercent = row[11].value,
-                    category = row[12].value
+                    experienceString = row[9].value?.ifBlank { null },
+                    levels = row[10].value!!.toInt(),
+                    gainExp = row[11].value,
+                    progressPercent = row[12].value,
+                    category = row[13].value
                 )
                 listTop.add(top)
             }
@@ -107,10 +109,11 @@ class UseCasesTops {
                     startDate= row[6].value!!,
                     lastDate= row[7].value!!,
                     experience = row[8].value?.toLong(),
-                    levels = row[9].value!!.toInt(),
-                    gainExp = row[10].value,
-                    progressPercent = row[11].value,
-                    category = row[12].value
+                    experienceString = row[9].value?.ifBlank { null },
+                    levels = row[10].value?.toInt(),
+                    gainExp = row[11].value,
+                    progressPercent = row[12].value,
+                    category = row[13].value
                 )
                 listTop.add(top)
             }
@@ -141,10 +144,11 @@ class UseCasesTops {
                     startDate= row[6].value!!,
                     lastDate= row[7].value!!,
                     experience = row[8].value?.toLong(),
-                    levels = row[9].value!!.toInt(),
-                    gainExp = row[10].value,
-                    progressPercent = row[11].value,
-                    category = row[12].value
+                    experienceString = row[9].value?.ifBlank { null },
+                    levels = row[10].value!!.toInt(),
+                    gainExp = row[11].value,
+                    progressPercent = row[12].value,
+                    category = row[13].value
                 )
                 listTop.add(top)
             }
@@ -175,10 +179,11 @@ class UseCasesTops {
                     startDate= row[6].value!!,
                     lastDate= row[7].value!!,
                     experience = row[8].value?.toLong(),
-                    levels = row[9].value!!.toInt(),
-                    gainExp = row[10].value,
-                    progressPercent = row[11].value,
-                    category = row[12].value
+                    experienceString = row[9].value?.ifBlank { null },
+                    levels = row[10].value!!.toInt(),
+                    gainExp = row[11].value,
+                    progressPercent = row[12].value,
+                    category = row[13].value
                 )
                 listTop.add(top)
             }

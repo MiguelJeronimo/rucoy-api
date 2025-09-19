@@ -22,6 +22,8 @@ data class Top(
     @JsonProperty("last_date")
     val lastDate: String,
     val experience: Long?,
+    @JsonProperty("experience_string")
+    val experienceString: String?,
     val levels: Int?,
     @JsonProperty("gain_exp")
     val gainExp: String?,

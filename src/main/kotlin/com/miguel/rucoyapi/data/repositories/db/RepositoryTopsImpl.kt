@@ -40,6 +40,7 @@ class RepositoryTopsImpl(
                                     "  r.startDate,\n" +
                                     "  r.lastDate,\n" +
                                     "  r.experience,\n" +
+                                    "  r.experience_string,\n" +
                                     "  p.levels,\n" +
                                     "  p.gain_exp,\n" +
                                     "  p.progress_percent,\n" +
@@ -92,6 +93,7 @@ class RepositoryTopsImpl(
                                     "  r.startDate,\n" +
                                     "  r.lastDate,\n" +
                                     "  r.experience,\n" +
+                                    "  r.experience_string,\n" +
                                     "  p.levels,\n" +
                                     "  p.gain_exp,\n" +
                                     "  p.progress_percent,\n" +
@@ -144,6 +146,7 @@ class RepositoryTopsImpl(
                                     "  r.startDate,\n" +
                                     "  r.lastDate,\n" +
                                     "  r.experience,\n" +
+                                    "  r.experience_string,\n" +
                                     "  p.levels,\n" +
                                     "  p.gain_exp,\n" +
                                     "  p.progress_percent,\n" +
@@ -196,6 +199,7 @@ class RepositoryTopsImpl(
                                     "  r.startDate,\n" +
                                     "  r.lastDate,\n" +
                                     "  r.experience,\n" +
+                                    "  r.experience_string,\n" +
                                     "  p.levels,\n" +
                                     "  p.gain_exp,\n" +
                                     "  p.progress_percent,\n" +
@@ -248,6 +252,7 @@ class RepositoryTopsImpl(
                                     "  r.startDate,\n" +
                                     "  r.lastDate,\n" +
                                     "  r.experience,\n" +
+                                    "  r.experience_string,\n" +
                                     "  p.levels,\n" +
                                     "  p.gain_exp,\n" +
                                     "  p.progress_percent,\n" +

@@ -1,6 +1,7 @@
 package com.miguel.rucoyapi.data.repositories.db
 
 import com.miguel.rucoyapi.data.entities.Turso
+import com.miguel.rucoyapi.utils.enviroment.Enviroment
 import com.miguel.rucoyapi.utils.execeptions.CustomError
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -16,12 +17,16 @@ import org.springframework.web.client.postForEntity
 class RepositoryTopStatsImpl(
     @Value("\${database.apikey}") private val token:String,
     @Value("\${database.url}") private val url:String
-): RepositoryTopStats {
+): RepositoryTopStats, Enviroment() {
+
     private val logger: Logger = LogManager.getLogger(RepositoryTopStatsImpl::class.java)
+    private val tokenTurso = enviroment("apikey", token)
+    private val urlTurso = enviroment("url", url)
+
     override suspend fun getStatsByName(name: String, idCategory:String): Turso? {
         return try {
             val header = HttpHeaders().apply {
-                setBearerAuth(token)
+                setBearerAuth(tokenTurso!!)
                 contentType = MediaType.APPLICATION_JSON
             }
             val body =  mapOf(
@@ -59,7 +64,7 @@ class RepositoryTopStatsImpl(
             )
             logger.info("Body: $body")
             val request = HttpEntity(body,header)
-            val response  = RestTemplate().postForEntity<Turso>(url, request = request, Turso::class.java)
+            val response  = RestTemplate().postForEntity<Turso>(urlTurso!!, request = request, Turso::class.java)
             if (!response.statusCode.is2xxSuccessful){
                 logger.error("Error: ${response.body}")
                 throw CustomError("Failed to obtain information")
@@ -74,7 +79,7 @@ class RepositoryTopStatsImpl(
     override suspend fun history(name: String, idDate:String): Turso? {
         return try {
             val header = HttpHeaders().apply {
-                setBearerAuth(token)
+                setBearerAuth(tokenTurso!!)
                 contentType = MediaType.APPLICATION_JSON
             }
             val body =  mapOf(
@@ -106,7 +111,7 @@ class RepositoryTopStatsImpl(
             )
             logger.info("Body: $body")
             val request = HttpEntity(body,header)
-            val response  = RestTemplate().postForEntity<Turso>(url, request = request, Turso::class.java)
+            val response  = RestTemplate().postForEntity<Turso>(urlTurso!!, request = request, Turso::class.java)
             if (!response.statusCode.is2xxSuccessful){
                 logger.error("Error: ${response.body}")
                 throw CustomError("Failed to obtain information")
@@ -121,7 +126,7 @@ class RepositoryTopStatsImpl(
     override suspend fun bestRank(): Turso? {
         return try {
             val header = HttpHeaders().apply {
-                setBearerAuth(token)
+                setBearerAuth(tokenTurso!!)
                 contentType = MediaType.APPLICATION_JSON
             }
             val body =  mapOf(
@@ -147,7 +152,7 @@ class RepositoryTopStatsImpl(
             )
             logger.info("Body: $body")
             val request = HttpEntity(body,header)
-            val response  = RestTemplate().postForEntity<Turso>(url, request = request, Turso::class.java)
+            val response  = RestTemplate().postForEntity<Turso>(urlTurso!!, request = request, Turso::class.java)
             if (!response.statusCode.is2xxSuccessful){
                 logger.error("Error: ${response.body}")
                 throw CustomError("Failed to obtain information")

@@ -47,12 +47,12 @@ data class Col(
     @JsonProperty("name")
     val name: String = "",
     @JsonProperty("decltype")
-    val decltype: String = ""
+    val decltype: String? = null
 )
 
 data class Row(
     @JsonProperty("type")
     val type: String = "",
     @JsonProperty("value")
-    val value: String = ""
+    val value: String? = null
 )

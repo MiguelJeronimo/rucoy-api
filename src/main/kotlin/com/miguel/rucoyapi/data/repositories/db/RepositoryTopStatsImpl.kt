@@ -117,4 +117,45 @@ class RepositoryTopStatsImpl(
             throw CustomError("Failed to obtain information ")
         }
     }
+
+    override suspend fun bestRank(): Turso? {
+        return try {
+            val header = HttpHeaders().apply {
+                setBearerAuth(token)
+                contentType = MediaType.APPLICATION_JSON
+            }
+            val body =  mapOf(
+                "requests" to listOf(
+                    mapOf(
+                        "type" to "execute",
+                        "stmt" to mapOf(
+                            "sql" to "SELECT \n" +
+                                    "  MIN(r.rank) AS best_rank,\n" +
+                                    "  c.name,\n" +
+                                    "       cat.name AS category,\n" +
+                                    "  r.startDate,\n" +
+                                    "  r.startDateTimestamp\n" +
+                                    "FROM Ranking r\n" +
+                                    "JOIN Character c ON r.idCharacter = c.idCharacter\n" +
+                                    "JOIN Category cat ON r.idCategory = cat.idCategory\n" +
+                                    "GROUP BY c.name, cat.name\n" +
+                                    "ORDER BY best_rank ASC limit 50;"
+                        )
+                    ),
+                    mapOf("type" to "close")
+                )
+            )
+            logger.info("Body: $body")
+            val request = HttpEntity(body,header)
+            val response  = RestTemplate().postForEntity<Turso>(url, request = request, Turso::class.java)
+            if (!response.statusCode.is2xxSuccessful){
+                logger.error("Error: ${response.body}")
+                throw CustomError("Failed to obtain information")
+            }
+            response.body
+        } catch (e: Exception){
+            logger.error(e)
+            throw CustomError("Failed to obtain information ")
+        }
+    }
 }

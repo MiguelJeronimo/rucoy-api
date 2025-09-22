@@ -2,9 +2,10 @@ package com.miguel.rucoyapi.domain.usecases
 
 import com.miguel.rucoyapi.data.repositories.db.RepositoryDate
 import com.miguel.rucoyapi.data.repositories.db.RepositoryTopStats
+import com.miguel.rucoyapi.domain.model.tops.BestRank
+import com.miguel.rucoyapi.domain.model.tops.BestRankModel
 import com.miguel.rucoyapi.domain.model.tops.History
 import com.miguel.rucoyapi.domain.model.tops.HistoryDTo
-import com.miguel.rucoyapi.domain.model.tops.Top
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.beans.factory.annotation.Autowired
@@ -39,5 +40,24 @@ class UseCaseHistory {
             }
         }
         return HistoryDTo().apply { tops = listTop }
+    }
+
+    suspend fun bestRank(): BestRankModel {
+        val response = repository.bestRank()
+        val listTop = ArrayList<BestRank>()
+        response?.results?.forEach {
+            it.response.result?.rows?.forEach { row->
+                print(row)
+                val top = BestRank().apply {
+                    bestRank = row[0].value?.toInt()
+                    name = row[1].value!!
+                    category = row[2].value!!
+                    startDate = row[3].value!!
+                    startDateTimeStamp = row[4].value?.toLong()
+                }
+                listTop.add(top)
+            }
+        }
+        return BestRankModel().apply { tops  = listTop }
     }
 }

@@ -34,4 +34,18 @@ class ControllerHistory(@Autowired private val  useCaseHistory: UseCaseHistory) 
 
     }
 
+    @GetMapping("/tops/best/rank")
+    suspend fun bestRank(request: HttpServletRequest): ResponseEntity<out Any?> {
+        logger.info("init petition: ${request.method} - ${request.requestURI}")
+        return try {
+            val response = useCaseHistory.bestRank()
+            ResponseEntity.ok(responses.response(200, response))
+        }catch (e: CustomError){
+            ResponseEntity.badRequest().body(responses.Errors(400, e.message.toString()))
+        }
+        catch (e: Exception){
+            logger.error(e)
+            ResponseEntity.internalServerError().body(responses.Errors(500, "Fatal Error, contact to support"))
+        }
+    }
 }

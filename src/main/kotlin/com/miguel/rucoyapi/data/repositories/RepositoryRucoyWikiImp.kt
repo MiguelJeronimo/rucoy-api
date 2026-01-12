@@ -2,10 +2,12 @@ package com.miguel.rucoyapi.data.repositories
 
 import com.miguel.rucoyapi.data.network.API.Rucoy
 import model.*
+import org.springframework.stereotype.Repository
 
+@Repository
 class RepositoryRucoyWikiImp(private val rucoy: Rucoy): RepositoryRucoyWiki {
-    override suspend fun creature(name: String): Creatures? {
-        return rucoy.creatureProfile(name)
+    override suspend fun creature(name: String, response: String): Creatures? {
+        return rucoy.creatureProfile(name, response)
     }
 
     override suspend fun item(name: String): ItemProfile? {

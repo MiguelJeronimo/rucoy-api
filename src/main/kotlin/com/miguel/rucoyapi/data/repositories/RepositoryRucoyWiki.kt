@@ -2,8 +2,9 @@ package com.miguel.rucoyapi.data.repositories
 
 import model.*
 
+
 interface RepositoryRucoyWiki {
-    suspend fun creature(name:String): Creatures?
+    suspend fun creature(name: String, response: String): Creatures?
     suspend fun item(name:String): ItemProfile?
     suspend fun swords(): ArrayList<ItemRucoyData>?
     suspend fun bows(): ArrayList<ItemRucoyData>?

@@ -32,7 +32,7 @@ data class Creatures(
     val experience: String,
     val spawn: String,
     val genera_information: String,
-    val items: ArrayList<ItemsCreatures>
+    val items: List<ItemsCreatures>
 )
 data class ItemsCreatures(var name: String?, var url: String?)
 data class ItemsRucoyData(val itemsRucoy: ArrayList<ItemRucoyData>)

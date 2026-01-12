@@ -1,15 +1,24 @@
 package com.miguel.rucoyapi.domain.usecases
 
 import com.miguel.rucoyapi.data.repositories.RepositoryRucoyWiki
+import com.miguel.rucoyapi.data.repositories.RepositoryWikiInfo
 import com.miguel.rucoyapi.utils.utils
 import model.*
+import org.apache.logging.log4j.LogManager
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class UseCaseRucoyWiki(private val repository: RepositoryRucoyWiki) {
+@Service
+class UseCaseRucoyWiki {
+    @Autowired
+    private lateinit var repository: RepositoryRucoyWiki
+    @Autowired
+    private lateinit var repositoryWiki: RepositoryWikiInfo
     //leyendo archivos de la carpeta resources del proyecto spingboot
     private val file = javaClass.getResourceAsStream("/databloqueada.txt")
     private val validFile = javaClass.getResourceAsStream("/datacorrecta.txt")
-
+    private val logger = LogManager.getLogger(UseCaseRucoyWiki::class.java)
     //println("Ruta del archivo: "+System.getProperty("user.dir"))
     private val bloquedData = utils().readDocumenttxt(file)
     private val validData = utils().readDocumenttxt(validFile)
@@ -40,7 +49,10 @@ class UseCaseRucoyWiki(private val repository: RepositoryRucoyWiki) {
     }
 
     suspend fun creature(name: String): Creatures? {
-        return repository.creature(name)
+        val response = repositoryWiki.infoWikiCreatures(name)
+       // logger.info("Response: $response")
+        val html = response.parse?.text?.content.toString()
+        return repository.creature(name, html)
     }
 
     suspend fun equipment(): ArrayList<Category>? {
@@ -94,6 +106,4 @@ class UseCaseRucoyWiki(private val repository: RepositoryRucoyWiki) {
     suspend fun wands(): ArrayList<ItemRucoyData>? {
         return repository.wands()
     }
-
-
 }

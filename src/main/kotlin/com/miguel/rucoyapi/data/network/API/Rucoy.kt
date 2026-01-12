@@ -25,13 +25,16 @@ import API.guildss.GuildsData
 import API.higcoresrucoy.*
 import API.news.New
 import com.miguel.rucoyapi.data.network.jsoup.Scrapper
+import com.miguel.rucoyapi.utils.execeptions.CustomError
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import model.*
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import org.springframework.stereotype.Service
 
-class Rucoy(): AbstractRucoy() {
+@Service
+class Rucoy : AbstractRucoy() {
     private val logger: Logger = LogManager.getLogger(Rucoy::class.java)
     suspend fun SearchGuilds(guildName: String): Guild? {
         try {
@@ -179,12 +182,12 @@ class Rucoy(): AbstractRucoy() {
         }
     }
 
-    suspend fun creatureProfile(creatureName: String): model.Creatures? {
+    suspend fun creatureProfile(creatureName: String, response: String): model.Creatures? {
         try {
             return withContext(Dispatchers.IO) {
-                val url = "https://rucoy-online.fandom.com/wiki/${creatureName}"
-                logger.info("URL to scrap: $url")
-                val scrapper = Scrapper().Soup(url)
+                //logger.info("html: $response")
+                val scrapper = Scrapper().htmlConverter(response)
+                if (scrapper === null) throw CustomError("Error reading html...")
                 val creatureData = Creatures().getGeneralDataCreature(scrapper)
                 logger.info("Creature Profile: $creatureData")
                 return@withContext creatureData

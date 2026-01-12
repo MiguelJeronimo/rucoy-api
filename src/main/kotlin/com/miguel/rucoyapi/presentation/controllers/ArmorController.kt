@@ -4,6 +4,7 @@ import com.miguel.rucoyapi.data.repositories.RepositoryRucoyWikiImp
 import com.miguel.rucoyapi.domain.model.responses
 import com.miguel.rucoyapi.domain.usecases.UseCaseRucoyWiki
 import com.miguel.rucoyapi.data.network.API.Rucoy
+import com.miguel.rucoyapi.data.repositories.RepositoryWikiInfoImpl
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.http.ResponseEntity
@@ -12,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-class ArmorController {
+class ArmorController (
+    private val useCaseRucoyWiki: UseCaseRucoyWiki
+){
     private val logger: Logger = LogManager.getLogger(ArmorController::class.java)
     @GetMapping("api/v1/armors")
     suspend fun getArmorList(): Any {
         return try {
-            val repositoryRucoyWikiImp = RepositoryRucoyWikiImp(Rucoy())
-            val useCaseRucoyWiki = UseCaseRucoyWiki(repositoryRucoyWikiImp)
             val amorList = useCaseRucoyWiki.armors()
             logger.info("init petition: api/v1/armors")
             if(amorList != null){

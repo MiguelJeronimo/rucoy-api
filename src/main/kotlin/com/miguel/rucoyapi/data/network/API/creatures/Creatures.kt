@@ -4,31 +4,45 @@ import model.Creatures
 import model.ItemsCreatures
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
+import org.jsoup.select.Elements
 
 class Creatures {
     fun getGeneralDataCreature(scrapper: Document): Creatures {
-        val arrayItemsCreature = ArrayList<ItemsCreatures>()
         val creatureName = scrapper.select("h2[data-source]").text()
-        val urlImgCreature = scrapper.getElementsByClass("image image-thumbnail").attr("href")
-        val creatureAtributte = scrapper.getElementsByClass("pi-data-value pi-font")
-        val tableLoot = scrapper.getElementsByClass("article-table")
-        val lootList = tableLoot.select("tbody")
-        var level = creatureAtributte[0].text()
-        val hp = creatureAtributte[1].text()
-        val exp = creatureAtributte[2].text()
-        val spawn = creatureAtributte[3].text()
-        val generalInformation = scrapper.select("p").text()
-        for (loot in lootList){
-            val center = loot.select("tr")
-            for (data in center){
-                searchDataRecursive(data,arrayItemsCreature)
-            }
-            arrayItemsCreature.removeFirst()
+        var urlImgCreature: String = ""
+        var tableLoot: Elements = Elements()
+        var creatureAttribute: Elements = Elements()
+        var level: String = ""
+        var experience: String = ""
+        var hp: String = ""
+        var spawn:String = ""
+        var generalInformation:String = ""
+        if (!creatureName.isNullOrEmpty()){
+            urlImgCreature = scrapper.getElementsByClass("image image-thumbnail").attr("href")
+            creatureAttribute = scrapper.getElementsByClass("pi-data-value pi-font")
+            hp = creatureAttribute[1].text()
+            experience = creatureAttribute[2].text()
+            spawn = creatureAttribute[3].text()
+            generalInformation = scrapper.select("p").text()
+            level = creatureAttribute[0].text()
         }
+        tableLoot = scrapper.getElementsByClass("article-table")
+        val lootList = tableLoot.select("tbody")
+        val trs = lootList.select("tr")
+        val loot = trs.map {
+            val url = it.getElementsByClass("thumb mw-halign-center ")
+                .select("img")
+                .attr("data-src")
+            ItemsCreatures(
+                name = it.text(),
+                url = url,
+            )
+        } as MutableList<ItemsCreatures>
         if (level == "none"){
             level = null.toString()
         }
-        val creatureProfile = Creatures(creatureName,urlImgCreature,level, hp,exp,spawn,generalInformation, arrayItemsCreature)
+        loot.removeIf { it.url == "" }
+        val creatureProfile = Creatures(creatureName, urlImgCreature, level, hp, experience, spawn, generalInformation, loot)
         return creatureProfile
     }
 
@@ -41,6 +55,7 @@ class Creatures {
                     val div = element.firstElementChild()
                     if (div?.tagName() == "div") {
                         val img = div.children().select("a").first()?.firstChild()
+                        print("IMAGENES: "+img)
                         if (img?.attr("data-src") == ""){
                             items.url = img.attr("src")
                         } else{

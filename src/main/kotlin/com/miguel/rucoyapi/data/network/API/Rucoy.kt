@@ -295,8 +295,7 @@ class Rucoy : AbstractRucoy() {
     suspend fun getArmors(response:String): ArrayList<Armor>? {
         try {
             return withContext(Dispatchers.IO) {
-                val scrapper = Scrapper().htmlConverter(response)
-                if (scrapper === null) throw CustomError("Error reading html...")
+                val scrapper = Scrapper().htmlConverter(response) ?: throw CustomError("Error reading html...")
                 val armorList = ArmorRucoyList().getArmorList(scrapper)
                 logger.info("Armor List: $armorList")
                 return@withContext armorList
@@ -310,8 +309,7 @@ class Rucoy : AbstractRucoy() {
     suspend fun getBackPacks(response:String): ArrayList<BackPack>? {
         try {
             return withContext(Dispatchers.IO) {
-                val scrapper = Scrapper().htmlConverter(response)
-                if (scrapper === null) throw CustomError("Error reading html...")
+                val scrapper = Scrapper().htmlConverter(response) ?: throw CustomError("Error reading html...")
                 val backpacks = BackPackList().getBackPackList(scrapper)
                 logger.info("Backpacks: $backpacks")
                 return@withContext backpacks
@@ -325,8 +323,7 @@ class Rucoy : AbstractRucoy() {
     suspend fun getBelts(response: String): ArrayList<Belt>? {
         try {
             return withContext(Dispatchers.IO) {
-                val scrapper = Scrapper().htmlConverter(response)
-                if (scrapper === null) throw CustomError("Error reading html...")
+                val scrapper = Scrapper().htmlConverter(response) ?: throw CustomError("Error reading html...")
                 val belts = BeltsRucoyList().getBeltsRucoyList(scrapper)
                 logger.info("Belts list: $belts")
                 return@withContext belts
@@ -340,8 +337,7 @@ class Rucoy : AbstractRucoy() {
     suspend fun getBoots(response:String): ArrayList<Boots>? {
         try {
             return withContext(Dispatchers.IO) {
-                val scrapper = Scrapper().htmlConverter(response)
-                if (scrapper === null) throw CustomError("Error reading html...")
+                val scrapper = Scrapper().htmlConverter(response) ?: throw CustomError("Error reading html...")
                 val boots = BootsRucoyList().getBootsRucoyList(scrapper)
                 logger.info("Boots List: $boots")
                 return@withContext boots
@@ -355,8 +351,7 @@ class Rucoy : AbstractRucoy() {
     suspend fun getHats(response: String): ArrayList<Hat>? {
         try {
             return withContext(Dispatchers.IO) {
-                val scrapper = Scrapper().htmlConverter(response)
-                if (scrapper === null) throw CustomError("Error reading html...")
+                val scrapper = Scrapper().htmlConverter(response) ?: throw CustomError("Error reading html...")
                 val hats = HatsRucoyList().getHatsRucoyList(scrapper)
                 logger.info("Hats List: $hats")
                 return@withContext hats
@@ -367,12 +362,10 @@ class Rucoy : AbstractRucoy() {
         }
     }
 
-    suspend fun getHelmets(): ArrayList<Helmet>? {
+    suspend fun getHelmets(response: String): ArrayList<Helmet>? {
         try {
             return withContext(Dispatchers.IO) {
-                val url = "https://rucoy-online.fandom.com/wiki/Helmet_List"
-                logger.info("URL to scrap: $url")
-                val scrapper = Scrapper().Soup(url)
+                val scrapper = Scrapper().htmlConverter(response) ?: throw CustomError("Error reading html...")
                 val helmets = HelmetsRucoyList().getRucoyRucoyList(scrapper)
                 logger.info("Helmets list: $helmets")
                 return@withContext helmets
@@ -383,12 +376,10 @@ class Rucoy : AbstractRucoy() {
         }
     }
 
-    suspend fun getHoods(): ArrayList<Hood>? {
+    suspend fun getHoods(response:String): ArrayList<Hood>? {
         try {
             return withContext(Dispatchers.IO) {
-                val url = "https://rucoy-online.fandom.com/wiki/Hoods_List"
-                logger.info("URL to scrap: $url")
-                val scrapper = Scrapper().Soup(url)
+                val scrapper = Scrapper().htmlConverter(response)?: throw CustomError("Error reading html...")
                 val hoods = HoodsRucoyList().getHoodsRucoyList(scrapper)
                 logger.info("Hoods List: $hoods")
                 return@withContext hoods

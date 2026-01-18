@@ -80,11 +80,15 @@ class UseCaseRucoyWiki {
     }
 
     suspend fun helmets(): ArrayList<Helmet>? {
-        return repository.helmets()
+        val response = repositoryWiki.infoWikiCreatures("Helmet_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.helmets(response = html)
     }
 
     suspend fun hoods(): ArrayList<Hood>? {
-        return repository.hoods()
+        val response = repositoryWiki.infoWikiCreatures("Hoods_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.hoods(response = html)
     }
 
     suspend fun legs(): ArrayList<Legs>? {

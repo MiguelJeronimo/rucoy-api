@@ -54,12 +54,12 @@ class RepositoryRucoyWikiImp(private val rucoy: Rucoy): RepositoryRucoyWiki {
         return rucoy.getHats(response = response)
     }
 
-    override suspend fun helmets(): ArrayList<Helmet>? {
-        return rucoy.getHelmets()
+    override suspend fun helmets(response:String): ArrayList<Helmet>? {
+        return rucoy.getHelmets(response = response)
     }
 
-    override suspend fun hoods(): ArrayList<Hood>? {
-        return rucoy.getHoods()
+    override suspend fun hoods(response:String): ArrayList<Hood>? {
+        return rucoy.getHoods(response = response)
     }
 
     override suspend fun legs(): ArrayList<Legs>? {

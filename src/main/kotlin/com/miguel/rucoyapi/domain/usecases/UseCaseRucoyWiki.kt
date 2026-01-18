@@ -25,7 +25,9 @@ class UseCaseRucoyWiki {
 
     suspend fun item(name: String): ItemProfile? {
         val data = utils().searchdataArray(bloquedData, validData, name)
-        return repository.item(data)
+        val response = repositoryWiki.infoWikiCreatures(data)
+        val html = response.parse?.text?.content.toString()
+        return repository.item(html)
     }
 
     suspend fun armors(): ArrayList<Armor>? {
@@ -98,34 +100,50 @@ class UseCaseRucoyWiki {
     }
 
     suspend fun lightArmor(): ArrayList<LightArmor>? {
-        return repository.lightArmor()
+        val response = repositoryWiki.infoWikiCreatures("Light_Armor_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.lightArmor(response = html)
     }
 
     suspend fun pendants(): ArrayList<Pendant>? {
-        return repository.pendants()
+        val response = repositoryWiki.infoWikiCreatures("Pendants_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.pendants(response = html)
     }
 
     suspend fun rings(): ArrayList<Ring>? {
-        return repository.rings()
+        val response = repositoryWiki.infoWikiCreatures("Rings_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.rings(response = html)
     }
 
     suspend fun robes(): ArrayList<Robe>? {
-        return repository.robes()
+        val response = repositoryWiki.infoWikiCreatures("Robes_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.robes(response = html)
     }
 
     suspend fun shields(): ArrayList<Shield>? {
-        return repository.shields()
+        val response = repositoryWiki.infoWikiCreatures("Shield_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.shields(response = html)
     }
 
     suspend fun potions(): ArrayList<Potion>? {
-        return repository.potions()
+        val response = repositoryWiki.infoWikiCreatures("Potions_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.potions(response = html)
     }
 
     suspend fun swords(): ArrayList<ItemRucoyData>? {
-        return repository.swords()
+        val response = repositoryWiki.infoWikiCreatures("Sword_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.swords(response = html)
     }
 
     suspend fun wands(): ArrayList<ItemRucoyData>? {
-        return repository.wands()
+        val response = repositoryWiki.infoWikiCreatures("Wand_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.wands(response = html)
     }
 }

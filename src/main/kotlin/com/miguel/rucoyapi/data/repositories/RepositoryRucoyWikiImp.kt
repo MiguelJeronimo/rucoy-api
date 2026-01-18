@@ -14,20 +14,20 @@ class RepositoryRucoyWikiImp(private val rucoy: Rucoy): RepositoryRucoyWiki {
         return rucoy.itemProfile(name)
     }
 
-    override suspend fun swords(): ArrayList<ItemRucoyData>? {
-        return rucoy.swordsList()
+    override suspend fun swords(response:String): ArrayList<ItemRucoyData>? {
+        return rucoy.swordsList(response)
     }
 
     override suspend fun bows(response: String): ArrayList<ItemRucoyData>? {
         return rucoy.bowsList(response)
     }
 
-    override suspend fun wands(): ArrayList<ItemRucoyData>? {
-        return rucoy.wandsList()
+    override suspend fun wands(response:String): ArrayList<ItemRucoyData>? {
+        return rucoy.wandsList(response = response)
     }
 
-    override suspend fun potions(): ArrayList<Potion>? {
-        return rucoy.getPotions()
+    override suspend fun potions(response:String): ArrayList<Potion>? {
+        return rucoy.getPotions(response = response)
     }
 
     override suspend fun equipments(response:String): ArrayList<Category>? {
@@ -66,23 +66,23 @@ class RepositoryRucoyWikiImp(private val rucoy: Rucoy): RepositoryRucoyWiki {
         return rucoy.getLegs(response = response)
     }
 
-    override suspend fun lightArmor(): ArrayList<LightArmor>? {
-        return rucoy.getLightArmor()
+    override suspend fun lightArmor(response:String): ArrayList<LightArmor>? {
+        return rucoy.getLightArmor(response = response)
     }
 
-    override suspend fun pendants(): ArrayList<Pendant>? {
-        return rucoy.getPendants()
+    override suspend fun pendants(response:String): ArrayList<Pendant>? {
+        return rucoy.getPendants(response = response)
     }
 
-    override suspend fun rings(): ArrayList<Ring>? {
-        return rucoy.getRings()
+    override suspend fun rings(response:String): ArrayList<Ring>? {
+        return rucoy.getRings(response = response)
     }
 
-    override suspend fun robes(): ArrayList<Robe>? {
-        return rucoy.getRobes()
+    override suspend fun robes(response:String): ArrayList<Robe>? {
+        return rucoy.getRobes(response = response)
     }
 
-    override suspend fun shields(): ArrayList<Shield>? {
-        return rucoy.getShields()
+    override suspend fun shields(response:String): ArrayList<Shield>? {
+        return rucoy.getShields(response = response)
     }
 }

@@ -74,7 +74,9 @@ class UseCaseRucoyWiki {
     }
 
     suspend fun hats(): ArrayList<Hat>? {
-        return repository.hats()
+        val response = repositoryWiki.infoWikiCreatures("Hats_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.hats(response = html)
     }
 
     suspend fun helmets(): ArrayList<Helmet>? {

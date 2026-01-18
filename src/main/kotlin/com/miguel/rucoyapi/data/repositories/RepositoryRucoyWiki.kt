@@ -15,7 +15,7 @@ interface RepositoryRucoyWiki {
     suspend fun backpacks(response:String): ArrayList<BackPack>?
     suspend fun belts(response: String): ArrayList<Belt>?
     suspend fun boots(response:String): ArrayList<Boots>?
-    suspend fun hats(): ArrayList<Hat>?
+    suspend fun hats(response:String): ArrayList<Hat>?
     suspend fun helmets(): ArrayList<Helmet>?
     suspend fun hoods(): ArrayList<Hood>?
     suspend fun legs(): ArrayList<Legs>?

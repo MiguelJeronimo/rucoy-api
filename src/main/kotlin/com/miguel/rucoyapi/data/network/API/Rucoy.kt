@@ -352,12 +352,11 @@ class Rucoy : AbstractRucoy() {
         }
     }
 
-    suspend fun getHats(): ArrayList<Hat>? {
+    suspend fun getHats(response: String): ArrayList<Hat>? {
         try {
             return withContext(Dispatchers.IO) {
-                val url = "https://rucoy-online.fandom.com/wiki/Hats_List"
-                logger.info("URL to scrap: $url")
-                val scrapper = Scrapper().Soup(url)
+                val scrapper = Scrapper().htmlConverter(response)
+                if (scrapper === null) throw CustomError("Error reading html...")
                 val hats = HatsRucoyList().getHatsRucoyList(scrapper)
                 logger.info("Hats List: $hats")
                 return@withContext hats

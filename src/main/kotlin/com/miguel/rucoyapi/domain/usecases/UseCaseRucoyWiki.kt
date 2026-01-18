@@ -49,7 +49,9 @@ class UseCaseRucoyWiki {
     }
 
     suspend fun boots(): ArrayList<Boots>? {
-        return repository.boots()
+        val response = repositoryWiki.infoWikiCreatures("Boots_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.boots(response = html)
     }
 
     suspend fun bows(): ArrayList<ItemRucoyData>? {

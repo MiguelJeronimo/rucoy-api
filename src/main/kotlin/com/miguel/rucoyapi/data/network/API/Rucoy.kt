@@ -308,12 +308,11 @@ class Rucoy : AbstractRucoy() {
         }
     }
 
-    suspend fun getBackPacks(): ArrayList<BackPack>? {
+    suspend fun getBackPacks(response:String): ArrayList<BackPack>? {
         try {
             return withContext(Dispatchers.IO) {
-                val url = "https://rucoy-online.fandom.com/wiki/Backpack_List"
-                logger.info("URL to scrap: $url")
-                val scrapper = Scrapper().Soup(url)
+                val scrapper = Scrapper().htmlConverter(response)
+                if (scrapper === null) throw CustomError("Error reading html...")
                 val backpacks = BackPackList().getBackPackList(scrapper)
                 logger.info("Backpacks: $backpacks")
                 return@withContext backpacks

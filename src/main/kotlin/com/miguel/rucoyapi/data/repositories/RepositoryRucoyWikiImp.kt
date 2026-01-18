@@ -38,8 +38,8 @@ class RepositoryRucoyWikiImp(private val rucoy: Rucoy): RepositoryRucoyWiki {
         return rucoy.getArmors(response = response)
     }
 
-    override suspend fun backpacks(): ArrayList<BackPack>? {
-        return rucoy.getBackPacks()
+    override suspend fun backpacks(response:String): ArrayList<BackPack>? {
+        return rucoy.getBackPacks(response = response)
     }
 
     override suspend fun belts(): ArrayList<Belt>? {

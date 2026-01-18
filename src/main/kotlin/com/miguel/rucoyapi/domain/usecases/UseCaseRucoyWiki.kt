@@ -43,7 +43,9 @@ class UseCaseRucoyWiki {
     }
 
     suspend fun belts(): ArrayList<Belt>? {
-        return repository.belts()
+        val response = repositoryWiki.infoWikiCreatures("Belts_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.belts(response = html)
     }
 
     suspend fun boots(): ArrayList<Boots>? {

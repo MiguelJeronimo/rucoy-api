@@ -92,7 +92,9 @@ class UseCaseRucoyWiki {
     }
 
     suspend fun legs(): ArrayList<Legs>? {
-        return repository.legs()
+        val response = repositoryWiki.infoWikiCreatures("Legs_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.legs(response = html)
     }
 
     suspend fun lightArmor(): ArrayList<LightArmor>? {

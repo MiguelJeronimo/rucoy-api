@@ -390,12 +390,10 @@ class Rucoy : AbstractRucoy() {
         }
     }
 
-    suspend fun getLegs(): ArrayList<Legs>? {
+    suspend fun getLegs(response:String): ArrayList<Legs>? {
         try {
             return withContext(Dispatchers.IO) {
-                val url = "https://rucoy-online.fandom.com/wiki/Legs_List"
-                logger.info("URL to scrap: $url")
-                val scrapper = Scrapper().Soup(url)
+                val scrapper = Scrapper().htmlConverter(response)?: throw CustomError("Error reading html...")
                 val legs = LegsRucoyList().getLegsRucoyList(scrapper)
                 logger.info("Legs list: $legs")
                 return@withContext legs

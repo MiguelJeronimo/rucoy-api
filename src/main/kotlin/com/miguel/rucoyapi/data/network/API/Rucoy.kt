@@ -293,15 +293,14 @@ class Rucoy : AbstractRucoy() {
         }
     }
 
-    suspend fun getArmors(): ArrayList<Armor>? {
+    suspend fun getArmors(response:String): ArrayList<Armor>? {
         try {
             return withContext(Dispatchers.IO) {
-                val url = "https://rucoy-online.fandom.com/wiki/Armor_List"
-                logger.info("URL to scrap: $url")
-                val scrapper = Scrapper().Soup(url)
-                val armor_list = ArmorRucoyList().getArmorList(scrapper)
-                logger.info("Armor List: $armor_list")
-                return@withContext armor_list
+                val scrapper = Scrapper().htmlConverter(response)
+                if (scrapper === null) throw CustomError("Error reading html...")
+                val armorList = ArmorRucoyList().getArmorList(scrapper)
+                logger.info("Armor List: $armorList")
+                return@withContext armorList
             }
         } catch (e: Exception) {
             logger.fatal("getArmors fail to: ${e.stackTraceToString()}")

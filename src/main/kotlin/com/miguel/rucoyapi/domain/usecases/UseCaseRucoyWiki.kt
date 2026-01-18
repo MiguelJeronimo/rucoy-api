@@ -29,7 +29,9 @@ class UseCaseRucoyWiki {
     }
 
     suspend fun armors(): ArrayList<Armor>? {
-        return repository.armors()
+        val response = repositoryWiki.infoWikiCreatures("Armor_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.armors(html)
     }
 
     suspend fun backpacks(): ArrayList<BackPack>? {

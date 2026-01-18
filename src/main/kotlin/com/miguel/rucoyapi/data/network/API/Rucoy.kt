@@ -214,12 +214,11 @@ class Rucoy : AbstractRucoy() {
         }
     }
 
-    suspend fun bowsList(): ArrayList<ItemRucoyData>? {
+    suspend fun bowsList(response: String): ArrayList<ItemRucoyData>? {
         try {
             return withContext(Dispatchers.IO) {
-                val url = "https://rucoy-online.fandom.com/wiki/Bow_List"
-                logger.info("URL to scrap: $url")
-                val scrapper = Scrapper().Soup(url)
+                val scrapper = Scrapper().htmlConverter(response)
+                if (scrapper === null) throw CustomError("Error reading html...")
                 val bows_list = BowsListRucoy().getBowList(scrapper)
                 logger.info("Bows List: $bows_list")
                 return@withContext bows_list

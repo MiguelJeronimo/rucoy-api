@@ -18,8 +18,8 @@ class RepositoryRucoyWikiImp(private val rucoy: Rucoy): RepositoryRucoyWiki {
         return rucoy.swordsList()
     }
 
-    override suspend fun bows(): ArrayList<ItemRucoyData>? {
-        return rucoy.bowsList()
+    override suspend fun bows(response: String): ArrayList<ItemRucoyData>? {
+        return rucoy.bowsList(response)
     }
 
     override suspend fun wands(): ArrayList<ItemRucoyData>? {

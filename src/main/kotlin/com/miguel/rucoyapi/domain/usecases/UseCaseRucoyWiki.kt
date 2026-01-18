@@ -55,7 +55,9 @@ class UseCaseRucoyWiki {
     }
 
     suspend fun bows(): ArrayList<ItemRucoyData>? {
-        return repository.bows()
+        val response = repositoryWiki.infoWikiCreatures("Bow_List")
+        val html = response.parse?.text?.content.toString()
+        return repository.bows(response = html)
     }
 
     suspend fun creature(name: String): Creatures? {

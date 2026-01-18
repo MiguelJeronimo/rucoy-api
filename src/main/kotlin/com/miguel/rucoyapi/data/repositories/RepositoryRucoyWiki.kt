@@ -7,7 +7,7 @@ interface RepositoryRucoyWiki {
     suspend fun creature(name: String, response: String): Creatures?
     suspend fun item(name:String): ItemProfile?
     suspend fun swords(): ArrayList<ItemRucoyData>?
-    suspend fun bows(): ArrayList<ItemRucoyData>?
+    suspend fun bows(response:String): ArrayList<ItemRucoyData>?
     suspend fun wands(): ArrayList<ItemRucoyData>?
     suspend fun potions(): ArrayList<Potion>?
     suspend fun equipments(response:String): ArrayList<Category>?

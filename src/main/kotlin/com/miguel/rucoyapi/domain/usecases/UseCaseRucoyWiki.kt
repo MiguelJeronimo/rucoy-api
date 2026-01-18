@@ -56,7 +56,9 @@ class UseCaseRucoyWiki {
     }
 
     suspend fun equipment(): ArrayList<Category>? {
-        return repository.equipments()
+        val response = repositoryWiki.infoWikiCreatures("equipment")
+        val html = response.parse?.text?.content.toString()
+        return repository.equipments(response = html)
     }
 
     suspend fun hats(): ArrayList<Hat>? {

@@ -10,7 +10,7 @@ interface RepositoryRucoyWiki {
     suspend fun bows(): ArrayList<ItemRucoyData>?
     suspend fun wands(): ArrayList<ItemRucoyData>?
     suspend fun potions(): ArrayList<Potion>?
-    suspend fun equipments(): ArrayList<Category>?
+    suspend fun equipments(response:String): ArrayList<Category>?
     suspend fun armors(): ArrayList<Armor>?
     suspend fun backpacks(): ArrayList<BackPack>?
     suspend fun belts(): ArrayList<Belt>?

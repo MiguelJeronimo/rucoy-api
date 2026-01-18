@@ -278,12 +278,11 @@ class Rucoy : AbstractRucoy() {
         }
     }
 
-    suspend fun getEquipment(): ArrayList<Category>? {
+    suspend fun getEquipment(response:String): ArrayList<Category>? {
         try {
             return withContext(Dispatchers.IO) {
-                val url = "https://rucoy-online.fandom.com/wiki/Equipment"
-                logger.info("URL to scrap: $url")
-                val scrapper = Scrapper().Soup(url)
+                val scrapper = Scrapper().htmlConverter(response)
+                if (scrapper === null) throw CustomError("Error reading html...")
                 val equipment = Items().getItemsList(scrapper)
                 logger.info("Equipments: $equipment")
                 return@withContext equipment

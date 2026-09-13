@@ -5,12 +5,9 @@ WORKDIR /app
 RUN yum install -y findutils \
     && yum clean all
 
-COPY gradlew ./
-COPY gradle ./gradle
+COPY . .
 
 RUN chmod +x ./gradlew
-
-COPY . .
 
 RUN ./gradlew build --no-daemon
 
@@ -21,7 +18,7 @@ WORKDIR /app
 
 COPY --from=build /app/build/libs/*.jar app.jar
 
-ENV JAVA_OPTS="-Xms64m -Xmx450m -XX:+UseZGC -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=32m -XX:+HeapDumpOnOutOfMemoryError -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=35 -Xlog:gc*:file=gc.log:time,uptime,level,tags:filecount=5,filesize=10m -Xss512k"
+ENV JAVA_OPTS="-Xms64m -Xmx450m -XX:+UseZGC -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=32m -XX:+HeapDumpOnOutOfMemoryError -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=35"
 
 EXPOSE 8080
 

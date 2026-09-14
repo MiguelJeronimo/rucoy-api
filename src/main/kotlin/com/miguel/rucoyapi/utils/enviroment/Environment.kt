@@ -1,6 +1,6 @@
 package com.miguel.rucoyapi.utils.enviroment
 
-abstract class Enviroment {
+abstract class Environment {
 
     /**
      * Valida si se encuentra la variable de entorno y si no devuelve el text.
@@ -8,7 +8,7 @@ abstract class Enviroment {
      * @param text nombre del texto de configuracion
      *
      */
-    fun enviroment(enviromentName: String?, text: String?): String? {
+    fun environment(enviromentName: String?, text: String?): String? {
         return if (System.getenv(enviromentName) != null) System.getenv(enviromentName) else text
     }
 }

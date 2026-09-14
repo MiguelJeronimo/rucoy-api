@@ -4,6 +4,7 @@ import com.miguel.rucoyapi.utils.enviroment.Environment
 import io.jsonwebtoken.JwtException
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
+import org.apache.logging.log4j.LogManager
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.nio.charset.StandardCharsets
@@ -14,6 +15,7 @@ import javax.crypto.SecretKey
 class Config(
     @Value("\${rucoy.api.secret}") var secret: String
 ): Environment() {
+    private val logger = LogManager.getLogger()
     val environmentSecret = environment("secret", secret)?: throw IllegalStateException("Secret key not found in environment variables")
     val key: SecretKey = Keys.hmacShaKeyFor(environmentSecret.toByteArray(StandardCharsets.UTF_8))
 
@@ -38,8 +40,10 @@ class Config(
             val exp = claims.payload.expiration
             exp == null || !exp.before(Date())//Validate token without defeat time or defeat token
         }catch (e: JwtException){
+            logger.info("Token invalid: ${e.message}")
             false
         }catch (e: Exception){
+            logger.info("Token invalid: ${e.message}")
             false
         }
     }

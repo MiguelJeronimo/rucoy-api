@@ -1,7 +1,6 @@
 package com.miguel.rucoyapi.security
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.miguel.rucoyapi.utils.execeptions.CustomError
 import com.miguel.rucoyapi.utils.execeptions.ErrorAuthorizer
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType

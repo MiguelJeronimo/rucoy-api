@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import javax.servlet.http.HttpServletRequest
 
 @RestController
 @RequestMapping("api/v1/")
@@ -19,8 +18,7 @@ class ControllerHistory(@Autowired private val  useCaseHistory: UseCaseHistory) 
     private val logger: Logger = LogManager.getLogger(ControllerHistory::class.java)
 
     @GetMapping("/tops/history/{name}")
-    suspend fun history(@PathVariable name: String, request: HttpServletRequest): ResponseEntity<out Any?> {
-        logger.info("init petition: ${request.method} - ${request.requestURI}")
+    suspend fun history(@PathVariable name: String): ResponseEntity<out Any?> {
         return try {
             val response = useCaseHistory.history(name)
             ResponseEntity.ok(responses.response(200, response))
@@ -35,8 +33,7 @@ class ControllerHistory(@Autowired private val  useCaseHistory: UseCaseHistory) 
     }
 
     @GetMapping("/tops/best/rank")
-    suspend fun bestRank(request: HttpServletRequest): ResponseEntity<out Any?> {
-        logger.info("init petition: ${request.method} - ${request.requestURI}")
+    suspend fun bestRank(): ResponseEntity<out Any?> {
         return try {
             val response = useCaseHistory.bestRank()
             ResponseEntity.ok(responses.response(200, response))

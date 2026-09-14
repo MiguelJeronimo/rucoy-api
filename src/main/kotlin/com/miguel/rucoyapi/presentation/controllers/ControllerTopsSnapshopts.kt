@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import javax.servlet.http.HttpServletRequest
 
 @RestController
 @RequestMapping("api/v1/")
@@ -19,8 +18,7 @@ class ControllerTopsSnapshopts(@Autowired private val useCasesTops: UseCasesTops
     private val logger: Logger = LogManager.getLogger(ControllerTopsSnapshopts::class.java)
 
     @GetMapping("tops/experience")
-    suspend fun experience(@RequestParam(defaultValue = "1") page:Int, @RequestParam(defaultValue = "20") size:Int, request: HttpServletRequest): ResponseEntity<out Any?> {
-        logger.info("init petition: ${request.method} - ${request.requestURI}")
+    suspend fun experience(@RequestParam(defaultValue = "1") page:Int, @RequestParam(defaultValue = "20") size:Int): ResponseEntity<out Any?> {
         return try {
             logger.info("pagina: $page: tamaño: $size")
             val response = useCasesTops.experience(page = page, size= size)
@@ -36,8 +34,7 @@ class ControllerTopsSnapshopts(@Autowired private val useCasesTops: UseCasesTops
 
 
     @GetMapping("tops/melee")
-    suspend fun melee(@RequestParam(defaultValue = "1") page:Int, @RequestParam(defaultValue = "20") size:Int, request: HttpServletRequest): ResponseEntity<out Any?> {
-        logger.info("init petition: ${request.method} - ${request.requestURI}")
+    suspend fun melee(@RequestParam(defaultValue = "1") page:Int, @RequestParam(defaultValue = "20") size:Int): ResponseEntity<out Any?> {
         return try {
             logger.info("pagina: $page: tamaño: $size")
             val response = useCasesTops.melee(page = page, size= size)
@@ -52,8 +49,7 @@ class ControllerTopsSnapshopts(@Autowired private val useCasesTops: UseCasesTops
     }
 
     @GetMapping("tops/distance")
-    suspend fun distance(@RequestParam(defaultValue = "1") page:Int, @RequestParam(defaultValue = "20") size:Int, request: HttpServletRequest): ResponseEntity<out Any?> {
-        logger.info("init petition: ${request.method} - ${request.requestURI}")
+    suspend fun distance(@RequestParam(defaultValue = "1") page:Int, @RequestParam(defaultValue = "20") size:Int): ResponseEntity<out Any?> {
         return try {
             logger.info("pagina: $page: tamaño: $size")
             val response = useCasesTops.distance(page = page, size= size)
@@ -68,8 +64,7 @@ class ControllerTopsSnapshopts(@Autowired private val useCasesTops: UseCasesTops
     }
 
     @GetMapping("tops/magic")
-    suspend fun magic(@RequestParam(defaultValue = "1") page:Int, @RequestParam(defaultValue = "20") size:Int, request: HttpServletRequest): ResponseEntity<out Any?> {
-        logger.info("init petition: ${request.method} - ${request.requestURI}")
+    suspend fun magic(@RequestParam(defaultValue = "1") page:Int, @RequestParam(defaultValue = "20") size:Int): ResponseEntity<out Any?> {
         return try {
             logger.info("pagina: $page: tamaño: $size")
             val response = useCasesTops.magic(page = page, size= size)
@@ -84,8 +79,7 @@ class ControllerTopsSnapshopts(@Autowired private val useCasesTops: UseCasesTops
     }
 
     @GetMapping("tops/defense")
-    suspend fun defense(@RequestParam(defaultValue = "1") page:Int, @RequestParam(defaultValue = "20") size:Int, request: HttpServletRequest): ResponseEntity<out Any?> {
-        logger.info("init petition: ${request.method} - ${request.requestURI}")
+    suspend fun defense(@RequestParam(defaultValue = "1") page:Int, @RequestParam(defaultValue = "20") size:Int): ResponseEntity<out Any?> {
         return try {
             logger.info("pagina: $page: tamaño: $size")
             val response = useCasesTops.defense(page = page, size= size)

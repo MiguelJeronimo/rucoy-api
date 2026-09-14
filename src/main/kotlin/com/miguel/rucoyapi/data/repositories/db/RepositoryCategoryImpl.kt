@@ -1,7 +1,7 @@
 package com.miguel.rucoyapi.data.repositories.db
 
 import com.miguel.rucoyapi.data.entities.Turso
-import com.miguel.rucoyapi.utils.enviroment.Enviroment
+import com.miguel.rucoyapi.utils.enviroment.Environment
 import com.miguel.rucoyapi.utils.execeptions.CustomError
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -17,10 +17,10 @@ import org.springframework.web.client.postForEntity
 class RepositoryCategoryImpl(
     @Value("\${database.apikey}") private val token:String,
     @Value("\${database.url}") private val url:String
-): RepositoryCategory, Enviroment() {
+): RepositoryCategory, Environment() {
     private val logger: Logger = LogManager.getLogger(RepositoryCategoryImpl::class.java)
-    private val tokenTurso = enviroment("apikey", token)
-    private val urlTurso = enviroment("url", url)
+    private val tokenTurso = environment("apikey", token)
+    private val urlTurso = environment("url", url)
 
     override suspend fun getAllCategory(): Turso? {
         return try {

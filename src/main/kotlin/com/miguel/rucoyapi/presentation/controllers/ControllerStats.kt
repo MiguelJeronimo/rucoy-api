@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import javax.servlet.http.HttpServletRequest
 
 
 @RestController
@@ -20,8 +19,7 @@ class ControllerStats(@Autowired private val useCaseStats: UseCaseStats) {
     private val logger: Logger = LogManager.getLogger(ControllerStats::class.java)
 
     @GetMapping("tops/experience/{name}")
-    suspend fun playerExperience(@PathVariable name: String, request: HttpServletRequest): ResponseEntity<out Any?> {
-        logger.info("init petition: ${request.method} - ${request.requestURI}")
+    suspend fun playerExperience(@PathVariable name: String): ResponseEntity<out Any?> {
         return try {
             val response = useCaseStats.statsExperienceByName(name)
             ResponseEntity.ok(responses.response(200, response))
@@ -35,8 +33,7 @@ class ControllerStats(@Autowired private val useCaseStats: UseCaseStats) {
     }
 
     @GetMapping("tops/melee/{name}")
-    suspend fun playerMelee(@PathVariable name: String, request: HttpServletRequest): ResponseEntity<out Any?> {
-        logger.info("init petition: ${request.method} - ${request.requestURI}")
+    suspend fun playerMelee(@PathVariable name: String): ResponseEntity<out Any?> {
         return try {
             val response = useCaseStats.statsMeleeByName(name)
             ResponseEntity.ok(responses.response(200, response))
@@ -50,8 +47,7 @@ class ControllerStats(@Autowired private val useCaseStats: UseCaseStats) {
     }
 
     @GetMapping("tops/distance/{name}")
-    suspend fun playerDistance(@PathVariable name: String, request: HttpServletRequest): ResponseEntity<out Any?> {
-        logger.info("init petition: ${request.method} - ${request.requestURI}")
+    suspend fun playerDistance(@PathVariable name: String): ResponseEntity<out Any?> {
         return try {
             val response = useCaseStats.statsDistanceByName(name)
             ResponseEntity.ok(responses.response(200, response))
@@ -65,8 +61,7 @@ class ControllerStats(@Autowired private val useCaseStats: UseCaseStats) {
     }
 
     @GetMapping("tops/magic/{name}")
-    suspend fun playerMagic(@PathVariable name: String, request: HttpServletRequest): ResponseEntity<out Any?> {
-        logger.info("init petition: ${request.method} - ${request.requestURI}")
+    suspend fun playerMagic(@PathVariable name: String): ResponseEntity<out Any?> {
         return try {
             val response = useCaseStats.statsMagicByName(name)
             ResponseEntity.ok(responses.response(200, response))
@@ -80,8 +75,7 @@ class ControllerStats(@Autowired private val useCaseStats: UseCaseStats) {
     }
 
     @GetMapping("tops/defense/{name}")
-    suspend fun playerDefense(@PathVariable name: String, request: HttpServletRequest): ResponseEntity<out Any?> {
-        logger.info("init petition: ${request.method} - ${request.requestURI}")
+    suspend fun playerDefense(@PathVariable name: String): ResponseEntity<out Any?> {
         return try {
             val response = useCaseStats.statsDefenseByName(name)
             ResponseEntity.ok(responses.response(200, response))

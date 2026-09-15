@@ -1,7 +1,7 @@
 package com.miguel.rucoyapi.data.repositories.db
 
 import com.miguel.rucoyapi.data.entities.Turso
-import com.miguel.rucoyapi.utils.enviroment.Enviroment
+import com.miguel.rucoyapi.utils.enviroment.Environment
 import com.miguel.rucoyapi.utils.execeptions.CustomError
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -17,10 +17,10 @@ import org.springframework.web.client.postForEntity
 class RepositoryTopsImpl(
     @Value("\${database.apikey}") private val token:String,
     @Value("\${database.url}") private val url:String
-): RepositoryTops, Enviroment() {
+): RepositoryTops, Environment() {
     private val logger: Logger = LogManager.getLogger(RepositoryTopsImpl::class.java)
-    private val tokenTurso = enviroment("apikey", token)
-    private val urlTurso = enviroment("url", url)
+    private val tokenTurso = environment("apikey", token)
+    private val urlTurso = environment("url", url)
 
     override suspend fun experience(page: Int, size: Int, id:String, idSnapshot:String): Turso? {
         return try {

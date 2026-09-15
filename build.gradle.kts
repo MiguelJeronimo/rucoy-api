@@ -23,13 +23,21 @@ repositories {
 dependencies {
 	implementation("org.jsoup:jsoup:1.16.1")
 	implementation("org.springframework.boot:spring-boot-starter")
+	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.springframework.boot:spring-boot-starter-web")
+//	implementation("org.springframework.boot:spring-boot-starter-web")
 	//Corrutinas
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.4")
-	implementation ("org.springframework.boot:spring-boot-starter-websocket")
+	//implementation ("org.springframework.boot:spring-boot-starter-websocket")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	//jwt
+	//JWT
+	implementation("io.jsonwebtoken:jjwt-api:0.13.0")
+	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.13.0")
+	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.13.0")
+	implementation ("org.springframework.boot:spring-boot-starter-security")
+
 }
 
 tasks.withType<KotlinCompile> {

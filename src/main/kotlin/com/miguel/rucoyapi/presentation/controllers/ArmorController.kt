@@ -18,7 +18,7 @@ class ArmorController (
 ){
     private val logger: Logger = LogManager.getLogger(ArmorController::class.java)
     @GetMapping("api/v1/armors")
-    suspend fun getArmorList(): Any {
+    suspend fun getArmorList(): ResponseEntity<*> {
         return try {
             val amorList = useCaseRucoyWiki.armors()
             logger.info("init petition: api/v1/armors")

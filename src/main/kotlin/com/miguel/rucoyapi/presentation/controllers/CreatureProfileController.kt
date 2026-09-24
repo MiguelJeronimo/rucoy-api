@@ -19,7 +19,7 @@ class CreatureProfileController(
     private val logger: Logger = LogManager.getLogger(CreatureProfileController::class.java)
 
     @GetMapping("api/v1/creature/{name}")
-    suspend fun getCreatureProfile(@PathVariable name: String): Any {
+    suspend fun getCreatureProfile(@PathVariable name: String): ResponseEntity<*> {
         logger.info("init petition: api/v1/creature/${name}")
         return try {
             if (name != null){
@@ -45,7 +45,7 @@ class CreatureProfileController(
         }
     }
     @GetMapping("api/v1/creature")
-    fun getCreature(): Any {
+    fun getCreature(): ResponseEntity<*> {
         logger.info("init petition: api/v1/creature")
         return try {
             logger.error("Error: ${responses.Errors(400, "Not creature name valid")}")

@@ -9,6 +9,6 @@ abstract class Environment {
      *
      */
     fun environment(enviromentName: String?, text: String?): String? {
-        return if (System.getenv(enviromentName) != null) System.getenv(enviromentName) else text
+        return if (System.getenv(enviromentName) != null) System.getenv(enviromentName)?.trim() else text
     }
 }

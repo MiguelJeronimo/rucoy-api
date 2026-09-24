@@ -16,21 +16,22 @@ class LightArmorController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(LightArmorController::class.java)
 
     @GetMapping("api/v1/lightarmor")
-    suspend fun getLightArmorList(): Any {
+    suspend fun getLightArmorList(): ResponseEntity<*> {
         logger.info("init petition: api/v1/lightarmor")
         return try {
             val lightArmorList = useCaseRucoyWiki.lightArmor()
             if(lightArmorList != null){
                 logger.info("Final response success")
-                return responses.response(200, lightArmorList)
+                ResponseEntity.ok().body(responses.response(200, lightArmorList))
             } else {
                 logger.error("Error: ${
                     responses.Errors(
                     400,
                     "no bows found")}")
-                return responses.Errors(
+                ResponseEntity.badRequest().body(
+                    responses.Errors(
                     400,
-                    "no bows found")
+                    "no bows found"))
             }
         } catch (error: Exception){
             logger.fatal("Failure by: ${error.stackTraceToString()}")

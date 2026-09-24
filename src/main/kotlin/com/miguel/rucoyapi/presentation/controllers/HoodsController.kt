@@ -16,7 +16,7 @@ class HoodsController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(HoodsController::class.java)
 
     @GetMapping("api/v1/hoods")
-    suspend fun getHoodsList(): Any {
+    suspend fun getHoodsList(): ResponseEntity<*> {
         logger.info("init petition: api/v1/hoods")
         return try {
             val hoodsList = useCaseRucoyWiki.hoods()

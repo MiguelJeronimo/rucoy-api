@@ -16,7 +16,7 @@ class BootsController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(BootsController::class.java)
 
     @GetMapping("api/v1/boots")
-    suspend fun getBootsList(): Any {
+    suspend fun getBootsList(): ResponseEntity<*> {
         logger.info("init petition: api/v1/boots")
         return try {
             val bootsList = useCaseRucoyWiki.boots()

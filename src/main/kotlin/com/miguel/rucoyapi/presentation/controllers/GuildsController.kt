@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 class GuildsController {
     private val logger: Logger = LogManager.getLogger(GuildsController::class.java)
     @GetMapping("/api/v1/guilds/{pager}")
-    suspend fun getArmorList(@PathVariable pager: String): Any {
+    suspend fun getArmorList(@PathVariable pager: String): ResponseEntity<*> {
         logger.info("init petition: /api/v1/guilds/$pager")
         return try {
             if (pager != null && pager !="0"){
@@ -36,9 +36,10 @@ class GuildsController {
                         responses.Errors(
                         400,
                         "no guidls found")}")
-                    return responses.Errors(
-                        400,
-                        "no guidls found")
+                    ResponseEntity.badRequest().body(
+                    responses.Errors(
+                    400,
+                    "no guidls found"))
                 }
             } else {
                 logger.error("Error: ${responses.Errors(400, "Add pager number")}")

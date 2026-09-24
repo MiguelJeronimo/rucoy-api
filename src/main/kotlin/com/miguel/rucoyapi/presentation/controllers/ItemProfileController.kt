@@ -18,7 +18,7 @@ class ItemProfileController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(ItemProfileController::class.java)
 
     @GetMapping("api/v1/item/{name}")
-    suspend fun getItemProfile(@PathVariable name: String): Any {
+    suspend fun getItemProfile(@PathVariable name: String): ResponseEntity<*> {
         logger.info("init petition: api/v1/item/$name")
         return try {
             if (name != null){
@@ -46,7 +46,7 @@ class ItemProfileController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     }
     @GetMapping("api/v1/item")
     @NotNull
-    fun getItem(): Any {
+    fun getItem(): ResponseEntity<*> {
         return try {
             logger.error("Error: ${
                 responses.Errors(400, "Not item name valid")

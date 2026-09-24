@@ -16,7 +16,7 @@ class RingsControllers(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(RingsControllers::class.java)
 
     @GetMapping("api/v1/rings")
-    suspend fun getRingsList(): Any {
+    suspend fun getRingsList(): ResponseEntity<*> {
         logger.info("init petition: api/v1/rings")
         return try {
             val ringsList = useCaseRucoyWiki.rings()

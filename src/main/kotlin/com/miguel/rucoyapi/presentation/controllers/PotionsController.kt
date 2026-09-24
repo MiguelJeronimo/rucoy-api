@@ -16,7 +16,7 @@ class PotionsController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(PotionsController::class.java)
 
     @GetMapping("api/v1/potions")
-    suspend fun getPotions(): Any {
+    suspend fun getPotions(): ResponseEntity<*> {
         logger.info("init petition: api/v1/potions")
         return try {
             val postionsList = useCaseRucoyWiki.potions()

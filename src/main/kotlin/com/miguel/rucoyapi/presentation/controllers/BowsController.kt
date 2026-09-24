@@ -16,7 +16,7 @@ class BowsController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(BowsController::class.java)
 
     @GetMapping("api/v1/bows")
-    suspend fun getBowsList(): Any {
+    suspend fun getBowsList(): ResponseEntity<*> {
         logger.info("init petition: api/v1/bows")
         return try {
             val bowsList = useCaseRucoyWiki.bows()

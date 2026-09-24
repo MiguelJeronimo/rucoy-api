@@ -17,7 +17,7 @@ class CharactersController {
     private val logger: Logger = LogManager.getLogger(CharactersController::class.java)
     @GetMapping("api/v1/characters/{name}")
     @NotNull
-    suspend fun getCharacters(@PathVariable name: String): Any {
+    suspend fun getCharacters(@PathVariable name: String): ResponseEntity<*> {
         logger.info("init petition: api/v1/characters/$name")
         return try {
             if (name != null){
@@ -43,7 +43,7 @@ class CharactersController {
     }
     @GetMapping("api/v1/characters")
     @NotNull
-    fun getCharacter(): Any {
+    fun getCharacter(): ResponseEntity<*> {
         return try {
             logger.error("Error: ${responses.Errors(400, "Not character name valid")}")
             ResponseEntity.badRequest().body(responses.Errors(400, "Not character name valid"))

@@ -13,7 +13,7 @@ class EquipmentController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(EquipmentController::class.java)
 
     @GetMapping("api/v1/equipment")
-    suspend fun getEquipment(): Any {
+    suspend fun getEquipment(): ResponseEntity<*> {
         logger.info("init petition: api/v1/equipment")
         return try {
             val equipment = useCaseRucoyWiki.equipment()

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 class GuilldsControllers {
     private val logger: Logger = LogManager.getLogger(GuilldsControllers::class.java)
     @GetMapping("api/v1/guild/{name}")
-    suspend fun getGuild(@PathVariable name: String): Any?{
+    suspend fun getGuild(@PathVariable name: String): ResponseEntity<*>{
         logger.info("init petition: api/v1/guild/$name")
         return try {
             if (name != null){
@@ -43,7 +43,7 @@ class GuilldsControllers {
         }
     }
     @GetMapping("api/v1/guild")
-    fun getGuilds(): Any?{
+    fun getGuilds(): ResponseEntity<*>{
         logger.info("init petition: api/v1/guild")
         return try {
             ResponseEntity.badRequest().body(responses.Errors(400, "Not guild name valid"))

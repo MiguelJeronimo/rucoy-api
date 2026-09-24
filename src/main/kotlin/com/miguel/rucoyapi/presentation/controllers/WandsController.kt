@@ -16,7 +16,7 @@ class WandsController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(WandsController::class.java)
 
     @GetMapping("api/v1/wands")
-    suspend fun getWands(): Any {
+    suspend fun getWands(): ResponseEntity<*> {
         logger.info("init petition: api/v1/wands")
         return try {
             val wandsList = useCaseRucoyWiki.wands()

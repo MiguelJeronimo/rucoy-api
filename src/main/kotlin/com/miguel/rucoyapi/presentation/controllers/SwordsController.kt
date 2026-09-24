@@ -17,7 +17,7 @@ class SwordsController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
 
 
     @GetMapping("api/v1/swords")
-    suspend fun getSwords(): Any {
+    suspend fun getSwords(): ResponseEntity<*> {
         logger.info("init petition: api/v1/swords")
         return try {
             val swordsList = useCaseRucoyWiki.swords()

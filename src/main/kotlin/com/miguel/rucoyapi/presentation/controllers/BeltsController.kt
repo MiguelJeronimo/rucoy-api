@@ -16,7 +16,7 @@ class BeltsController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(BeltsController::class.java)
 
     @GetMapping("api/v1/belts")
-    suspend fun getBeltsList(): Any {
+    suspend fun getBeltsList(): ResponseEntity<*> {
         logger.info("init petition: api/v1/belts")
         return try {
             val beltsList = useCaseRucoyWiki.belts()

@@ -16,7 +16,7 @@ class HatsController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(HatsController::class.java)
 
     @GetMapping("api/v1/hats")
-    suspend fun getHatsList(): Any {
+    suspend fun getHatsList(): ResponseEntity<*> {
         logger.info("init petition: api/v1/hats")
         return try {
             val hatsList = useCaseRucoyWiki.hats()

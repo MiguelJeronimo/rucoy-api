@@ -16,7 +16,7 @@ class BackPacksController (private val useCaseRucoyWiki: UseCaseRucoyWiki){
     private val logger: Logger = LogManager.getLogger(BackPacksController::class.java)
 
     @GetMapping("api/v1/backpacks")
-    suspend fun getBackPacksList(): Any {
+    suspend fun getBackPacksList(): ResponseEntity<*> {
         logger.info("init petition: api/v1/backpacks")
         return try {
             val backpackList = useCaseRucoyWiki.backpacks()

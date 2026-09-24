@@ -17,7 +17,7 @@ class ShieldsController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
 
 
     @GetMapping("api/v1/shields")
-    suspend fun getRingsList(): Any {
+    suspend fun getRingsList(): ResponseEntity<*> {
         logger.info("init petition: api/v1/shields")
         return try {
             val shieldsList = useCaseRucoyWiki.shields()

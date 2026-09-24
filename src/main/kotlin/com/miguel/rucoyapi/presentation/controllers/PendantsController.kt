@@ -16,7 +16,7 @@ class PendantsController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(PendantsController::class.java)
 
     @GetMapping("api/v1/pendants")
-    suspend fun getPendantsArmorList(): Any {
+    suspend fun getPendantsArmorList(): ResponseEntity<*> {
         logger.info("init petition: api/v1/pendants")
         return try {
             val pendantsList = useCaseRucoyWiki.pendants()

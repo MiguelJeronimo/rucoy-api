@@ -18,7 +18,7 @@ class ControllerHistory(@Autowired private val  useCaseHistory: UseCaseHistory) 
     private val logger: Logger = LogManager.getLogger(ControllerHistory::class.java)
 
     @GetMapping("/tops/history/{name}")
-    suspend fun history(@PathVariable name: String): ResponseEntity<out Any?> {
+    suspend fun history(@PathVariable name: String): ResponseEntity<*> {
         return try {
             val response = useCaseHistory.history(name)
             ResponseEntity.ok(responses.response(200, response))
@@ -33,7 +33,7 @@ class ControllerHistory(@Autowired private val  useCaseHistory: UseCaseHistory) 
     }
 
     @GetMapping("/tops/best/rank")
-    suspend fun bestRank(): ResponseEntity<out Any?> {
+    suspend fun bestRank(): ResponseEntity<*> {
         return try {
             val response = useCaseHistory.bestRank()
             ResponseEntity.ok(responses.response(200, response))

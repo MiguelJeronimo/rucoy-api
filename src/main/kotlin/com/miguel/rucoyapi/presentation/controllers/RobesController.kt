@@ -16,7 +16,7 @@ class RobesController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(RobesController::class.java)
 
     @GetMapping("api/v1/robes")
-    suspend fun getRobesList(): Any {
+    suspend fun getRobesList(): ResponseEntity<*> {
         logger.info("init petition: api/v1/robes")
         return try {
             val robesList = useCaseRucoyWiki.robes()

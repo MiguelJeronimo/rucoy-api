@@ -16,7 +16,7 @@ class LegsController(private val useCaseRucoyWiki: UseCaseRucoyWiki) {
     private val logger: Logger = LogManager.getLogger(LegsController::class.java)
 
     @GetMapping("api/v1/legs")
-    suspend fun getLegsList(): Any {
+    suspend fun getLegsList(): ResponseEntity<*> {
         logger.info("init petition: api/v1/legs")
         return try {
             val legsList = useCaseRucoyWiki.legs()
